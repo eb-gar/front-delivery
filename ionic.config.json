@@ -1,0 +1,7 @@
+{
+  "name": "motorizados",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
