@@ -1,19 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, importProvidersFrom, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import {
-  IonHeader,
-  IonTitle,
-  IonToolbar,
-  IonContent,
-  IonItem,
-  IonLabel,
-  IonInput,
-  IonButton,
-  IonSelect,
-  IonSelectOption
-} from '@ionic/angular/standalone';
+import { IonicModule } from '@ionic/angular';
 
 @Component({
   selector: 'app-motorcyclists-form',
@@ -23,16 +12,7 @@ import {
   imports: [
     CommonModule,
     FormsModule,
-    IonHeader,
-    IonTitle,
-    IonToolbar,
-    IonContent,
-    IonItem,
-    IonLabel,
-    IonInput,
-    IonButton,
-    IonSelect,
-    IonSelectOption,
+    IonicModule,
     RouterModule
   ]
 })
