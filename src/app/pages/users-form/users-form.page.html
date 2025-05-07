@@ -1,0 +1,52 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Register User</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <form (ngSubmit)="saveUser()">
+    <ion-item>
+      <ion-label position="floating">Email</ion-label>
+      <ion-input [(ngModel)]="user.email" name="email" type="email" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Password</ion-label>
+      <ion-input [(ngModel)]="user.password" name="password" type="password" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Full Name</ion-label>
+      <ion-input [(ngModel)]="user.name" name="name" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Phone</ion-label>
+      <ion-input [(ngModel)]="user.phone" name="phone"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Role</ion-label>
+      <ion-select [(ngModel)]="user.role" name="role">
+        <ion-select-option value="admin">Admin</ion-select-option>
+        <ion-select-option value="motorcyclist">Motorcyclist</ion-select-option>
+        <ion-select-option value="restaurant">Restaurant</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-button expand="block" type="submit" class="ion-margin-top">
+      Save
+    </ion-button>
+  </form>
+
+  <!-- Navigation Arrows -->
+  <div class="navigation-buttons ion-text-center ion-margin-top">
+    <ion-button fill="clear" routerLink="/restaurants-form">
+      ← Restaurants
+    </ion-button>
+    <ion-button fill="clear" routerLink="/motorcyclists-form">
+      Motorcyclists →
+    </ion-button>
+  </div>
+</ion-content>
