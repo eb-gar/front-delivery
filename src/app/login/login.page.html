@@ -1,0 +1,27 @@
+<form (ngSubmit)="onSubmit()" class="animated-form">
+  <ion-item lines="none" class="custom-input">
+    <ion-icon slot="start" name="mail-outline" color="medium"></ion-icon>
+    <ion-label position="floating" color="medium">Correo electrónico</ion-label>
+    <ion-input type="email" [(ngModel)]="email" name="email" required></ion-input>
+  </ion-item>
+
+  <ion-item lines="none" class="custom-input">
+    <ion-icon slot="start" name="lock-closed-outline" color="medium"></ion-icon>
+    <ion-label position="floating" color="medium">Contraseña</ion-label>
+    <ion-input type="password" [(ngModel)]="password" name="password" required></ion-input>
+    <ion-button fill="clear" slot="end" (click)="togglePassword()">
+      <ion-icon [name]="showPassword ? 'eye-off-outline' : 'eye-outline'" color="medium"></ion-icon>
+    </ion-button>
+  </ion-item>
+
+  <div class="forgot-password">
+    <ion-button fill="clear" size="small" (click)="onForgotPassword()">
+      ¿Olvidaste tu contraseña?
+    </ion-button>
+  </div>
+
+  <ion-button expand="block" type="submit" class="submit-btn" [disabled]="isLoading">
+    <ion-spinner *ngIf="isLoading" name="crescent"></ion-spinner>
+    <span *ngIf="!isLoading">Iniciar Sesión</span>
+  </ion-button>
+</form>

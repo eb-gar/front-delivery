@@ -1,0 +1,176 @@
+:host {
+  --ion-background-color: #000000;
+  --ion-text-color: #ffffff;
+  --ion-color-primary: #333333;
+  --ion-color-primary-shade: #222222;
+  --ion-color-primary-tint: #444444;
+  --ion-item-background: rgba(30, 30, 30, 0.7);
+}
+
+.register-background {
+  position: relative;
+  height: 100%;
+  background: #000000;
+}
+
+.register-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 75% 30%, rgba(40, 40, 40, 0.8) 0%, transparent 50%),
+              radial-gradient(circle at 25% 70%, rgba(30, 30, 30, 0.6) 0%, transparent 50%);
+  backdrop-filter: blur(8px);
+}
+
+.register-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  padding: 20px;
+  max-width: 500px;
+  margin: 0 auto;
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+.register-header {
+  text-align: center;
+  margin-bottom: 30px;
+  
+  h1 {
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin: 20px 0 10px;
+    color: #ffffff;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  }
+  
+  p {
+    color: #aaaaaa;
+    margin: 0;
+    font-size: 1rem;
+  }
+}
+
+.app-logo {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+.register-form {
+  background: #00000080;
+  border-radius: 16px;
+  padding: 20px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px rgba(74, 74, 74, 0.3);
+  height: 50%;
+  width: 100%;
+
+  ion-note {
+    display: block;
+    margin: -15px 0 15px 16px;
+    font-size: 0.8rem;
+    color: #ff4444;
+  }
+
+  .form-item {
+    --background: rgba(40, 40, 40, 0.5);
+    --border-radius: 12px;
+    --highlight-color-focused: rgba(255, 255, 255, 0.2);
+    margin-bottom: 15px;
+    backdrop-filter: blur(5px);
+    transition: all 0.3s ease;
+    
+    &:focus-within {
+      border-color: rgba(255, 255, 255, 0.1);
+      box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.05);
+    }
+  }
+  
+  ion-input {
+    --color: #ffffff;
+    --placeholder-color: #aaaaaa;
+    --padding-start: 10px;
+  }
+  
+  .eye-button {
+    --padding-end: 0;
+    --padding-start: 0;
+    --color: #aaaaaa;
+    
+    &:hover {
+      --color: #ffffff;
+    }
+  }
+}
+
+.register-button {
+  --background: linear-gradient(135deg, #333333 0%, #222222 100%);
+  --background-activated: #222222;
+  --background-hover: #444444;
+  --box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  --color: #ffffff;
+  margin-top: 25px;
+  height: 50px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-radius: 12px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+  }
+  
+  &:active {
+    transform: translateY(0);
+  }
+  
+  ion-spinner {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+  }
+  
+  &:disabled {
+    --background: rgba(50, 50, 50, 0.5);
+    opacity: 0.7;
+  }
+}
+
+.register-footer {
+  text-align: center;
+  margin-top: 30px;
+  color: #aaaaaa;
+  font-size: 0.9rem;
+  
+  a {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s ease;  
+    
+    &:hover {
+      color: var(--ion-color-primary-tint);
+      text-decoration: underline;
+    }
+  }
+}
+
+ion-checkbox {
+  --size: 18px;
+  --background-checked: #333333;
+  --border-color-checked: #444444;
+  --checkmark-color: #ffffff;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
