@@ -1,44 +1,101 @@
-.animated-form {
-  animation: slideUp 0.5s ease-out;
+:host {
+  --ion-background-color: #000000;
+  --ion-text-color: #ffffff;
+  --ion-color-primary: #333333;
+  --ion-color-primary-shade: #222222;
+  --ion-color-primary-tint: #444444;
+  --ion-item-background: rgba(30, 30, 30, 0.7);
 }
 
-.custom-input {
-  --background: rgba(50, 50, 50, 0.3);
-  --border-radius: 12px;
-  margin-bottom: 20px;
-  --highlight-color-focused: rgba(255, 255, 255, 0.2);
-  --highlight-color-valid: rgba(255, 255, 255, 0.1);
-  --highlight-color-invalid: rgba(255, 107, 107, 0.3);
-  backdrop-filter: blur(5px);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  transition: all 0.3s ease;
+.login-background {
+  position: relative;
+  height: 100%;
+  background: linear-gradient(#000000);
+}
+
+.login-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #00000033;
+  backdrop-filter: blur(2px);
+}
+
+.login-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  padding: 20px;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.login-header {
+  text-align: center;
+  margin-bottom: 40px;
   
-  &:focus-within {
-    border-color: rgba(255, 255, 255, 0.2);
-    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.1);
+  h1 {
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin: 20px 0 10px;
+    color: #ffffff;
   }
   
-  ion-icon {
-    margin-right: 10px;
-    font-size: 20px;
+  p {
+    color: #ffffffb3;
+    margin: 0;
+    font-size: 1rem;
   }
 }
 
-ion-input {
-  --color: #ffffff;
-  --placeholder-color: #aaaaaa;
-  --placeholder-opacity: 0.8;
-  --padding-start: 0;
+.app-logo {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto;
 }
 
-.forgot-password {
-  text-align: right;
-  margin-bottom: 25px;
+.login-form {
+  background: #00000080;
+  border-radius: 16px;
+  padding: 20px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px rgba(74, 74, 74, 0.3);
+
+  ion-note {
+    display: block;
+    margin: -15px 0 15px 16px;
+    font-size: 0.8rem;
+    color: #ff4444;
+  }
+
+  .form-item {
+    --background: rgba(40, 40, 40, 0.5);
+    --border-radius: 12px;
+    --highlight-color-focused: rgba(255, 255, 255, 0.2);
+    margin-bottom: 15px;
+    backdrop-filter: blur(5px);
+    transition: all 0.3s ease;
+    
+    &:focus-within {
+      border-color: rgba(255, 255, 255, 0.1);
+      box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.05);
+    }
+  }
   
-  ion-button {
-    --color: rgba(255, 255, 255, 0.6);
-    font-size: 12px;
-    text-transform: none;
+  ion-input {
+    --color: #ffffff;
+    --placeholder-color: #aaaaaa;
+    --padding-start: 10px;
+  }
+  
+  .eye-button {
+    --padding-end: 0;
+    --padding-start: 0;
+    --color: #aaaaaa;
     
     &:hover {
       --color: #ffffff;
@@ -46,32 +103,68 @@ ion-input {
   }
 }
 
-.submit-btn {
-  --border-radius: 12px;
-  --box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-  --background: linear-gradient(135deg, #3a3a3a 0%, #1a1a1a 100%);
+.login-button {
+  --background: linear-gradient(135deg, #333333 0%, #222222 100%);
+  --background-activated: #222222;
+  --background-hover: #444444;
+  --box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  --color: #ffffff;
+  margin-top: 25px;
   height: 50px;
   font-weight: 600;
+  text-transform: uppercase;
   letter-spacing: 0.5px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-radius: 12px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+  }
   
   &:active {
-    transform: scale(0.98);
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    transform: translateY(0);
   }
   
   ion-spinner {
-    color: white;
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+  }
+  
+  &:disabled {
+    --background: rgba(50, 50, 50, 0.5);
+    opacity: 0.7;
   }
 }
 
-@keyframes slideUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
+.login-footer {
+  text-align: center;
+  margin-top: 30px;
+  color: #ffffff99;
+  font-size: 0.9rem;
+  
+  a {
+    color: #ffffffcc;
+    text-decoration: none;
+    
+    &:hover {
+      color: var(--ion-color-primary);
+    }
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+  
+  .forgot-password {
+    display: block;
+    margin-bottom: 15px;
   }
+}
+
+// Animaciones
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.login-container {
+  animation: fadeIn 0.5s ease-out forwards;
 }

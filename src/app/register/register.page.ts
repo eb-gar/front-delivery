@@ -5,8 +5,7 @@ import {
   LoadingController,
   NavController,
 } from '@ionic/angular';
-import { Router, RouterLink } from '@angular/router';
-import { IonContent, IonInput } from '@ionic/angular/standalone';
+import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 
