@@ -7,15 +7,15 @@ export const routes: Routes = [
     pathMatch: 'full',
   },
   {
-    path: 'auth',
-    loadComponent: () => import('./auth/auth.page').then( m => m.AuthPage)
-  },
-  {
     path: 'login',
-    loadComponent: () => import('./login/login.page').then( m => m.LoginPage)
+    loadComponent: () => import('./Super-Admin/login/login.page').then( m => m.LoginPage)
   },
   {
     path: 'register',
-    loadComponent: () => import('./register/register.page').then( m => m.RegisterPage)
+    loadComponent: () => import('./Super-Admin/register/register.page').then( m => m.RegisterPage)
+  },
+  {
+    path: 'form',
+    loadComponent: () => import('./Super-Admin/form/form.page').then( m => m.FormPage)
   },
 ];

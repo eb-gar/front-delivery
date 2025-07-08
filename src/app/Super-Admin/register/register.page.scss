@@ -7,23 +7,24 @@
   --ion-item-background: rgba(30, 30, 30, 0.7);
 }
 
-.login-background {
+.register-background {
   position: relative;
   height: 100%;
-  background: linear-gradient(#000000);
+  background: #000000;
 }
 
-.login-overlay {
+.register-overlay {
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: #00000033;
-  backdrop-filter: blur(2px);
+  background: radial-gradient(circle at 75% 30%, rgba(40, 40, 40, 0.8) 0%, transparent 50%),
+              radial-gradient(circle at 25% 70%, rgba(30, 30, 30, 0.6) 0%, transparent 50%);
+  backdrop-filter: blur(8px);
 }
 
-.login-container {
+.register-container {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -32,21 +33,23 @@
   padding: 20px;
   max-width: 500px;
   margin: 0 auto;
+  animation: fadeIn 0.5s ease-out forwards;
 }
 
-.login-header {
+.register-header {
   text-align: center;
-  margin-bottom: 40px;
+  margin-bottom: 30px;
   
   h1 {
     font-size: 2.2rem;
     font-weight: 700;
     margin: 20px 0 10px;
     color: #ffffff;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
   }
   
   p {
-    color: #ffffffb3;
+    color: #aaaaaa;
     margin: 0;
     font-size: 1rem;
   }
@@ -56,14 +59,15 @@
   width: 80px;
   height: 80px;
   margin: 0 auto;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
 }
 
-.login-form {
+.register-form {
   background: #00000080;
   border-radius: 16px;
-  padding: 20px;
+  padding: 30px;
   backdrop-filter: blur(10px);
-  box-shadow: 0 8px 32px rgba(74, 74, 74, 0.3);
+  box-shadow: 0 8px 15px rgba(255, 255, 255, 0.3);
 
   ion-note {
     display: block;
@@ -103,7 +107,7 @@
   }
 }
 
-.login-button {
+.register-button {
   --background: linear-gradient(135deg, #333333 0%, #222222 100%);
   --background-activated: #222222;
   --background-hover: #444444;
@@ -138,33 +142,33 @@
   }
 }
 
-.login-footer {
+.register-footer {
   text-align: center;
   margin-top: 30px;
-  color: #ffffff99;
+  color: #aaaaaa;
   font-size: 0.9rem;
   
   a {
-    color: #ffffffcc;
+    color: #ffffff;
     text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s ease;  
     
     &:hover {
-      color: var(--ion-color-primary);
+      color: var(--ion-color-primary-tint);
+      text-decoration: underline;
     }
-  }
-  
-  .forgot-password {
-    display: block;
-    margin-bottom: 15px;
   }
 }
 
-// Animaciones
+ion-checkbox {
+  --size: 18px;
+  --background-checked: #333333;
+  --border-color-checked: #444444;
+  --checkmark-color: #ffffff;
+}
+
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
-}
-
-.login-container {
-  animation: fadeIn 0.5s ease-out forwards;
 }
