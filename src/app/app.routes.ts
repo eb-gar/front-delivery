@@ -18,4 +18,8 @@ export const routes: Routes = [
     path: 'form',
     loadComponent: () => import('./Super-Admin/form/form.page').then( m => m.FormPage)
   },
+  {
+    path: 'dashboard',
+    loadComponent: () => import('./Super-Admin/dashboard/dashboard.page').then( m => m.DashboardPage)
+  },
 ];
