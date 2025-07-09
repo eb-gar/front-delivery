@@ -1,20 +1,36 @@
-import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component } from '@angular/core';
+import { RestaurantService } from '../../Super-Admin/services/restaurant.service';
+import { Restaurant } from '../../Super-Admin/models/restaurant.model';
+import { NavController } from '@ionic/angular';
+import { IonicModule } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/standalone';
 
 @Component({
   selector: 'app-form',
   templateUrl: './form.page.html',
   styleUrls: ['./form.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule]
+  imports: [
+    IonicModule,
+    FormsModule
+  ]
 })
-export class FormPage implements OnInit {
+export class FormPage {
+  restaurante: Restaurant = {
+    nombre: '',
+    propietario: '',
+    direccion: ''
+  };
 
-  constructor() { }
+  constructor(
+    private restaurantService: RestaurantService,
+    private navCtrl: NavController
+  ) {}
 
-  ngOnInit() {
+  crear() {
+    this.restaurantService.create(this.restaurante).subscribe(() => {
+      this.restaurante = { nombre: '', propietario: '', direccion: '' };
+      this.navCtrl.navigateBack('/dashboard'); // Cambia la ruta si es diferente
+    });
   }
-
 }

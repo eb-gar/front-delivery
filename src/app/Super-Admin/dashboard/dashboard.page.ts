@@ -1,20 +1,30 @@
-import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component } from '@angular/core';
+import { RestaurantService } from '../../Super-Admin/services/restaurant.service';
+import { Restaurant } from '../../Super-Admin/models/restaurant.model';
+import { IonicModule } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/standalone';
+import { CommonModule } from '@angular/common';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.page.html',
   styleUrls: ['./dashboard.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule]
+  imports: [IonicModule, FormsModule, CommonModule, RouterLink],
 })
-export class DashboardPage implements OnInit {
+export class DashboardPage {
+  restaurantes: Restaurant[] = [];
 
-  constructor() { }
+  constructor(private restaurantService: RestaurantService) {}
 
-  ngOnInit() {
+  ionViewWillEnter() {
+    this.load();
   }
 
+  load() {
+    this.restaurantService.getAll().subscribe((data) => {
+      this.restaurantes = data;
+    });
+  }
 }

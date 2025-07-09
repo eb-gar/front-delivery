@@ -1,0 +1,212 @@
+:host {
+  background: #000000;
+  color: #ffffff;
+  min-height: 100vh;
+}
+
+.dashboard-content {
+  padding: 0;
+  background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%);
+}
+
+.dashboard-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.dashboard-header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 30px;
+  padding: 20px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  
+  @media (min-width: 768px) {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+}
+
+.header-content {
+  margin-bottom: 20px;
+  
+  @media (min-width: 768px) {
+    margin-bottom: 0;
+  }
+}
+
+.dashboard-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0 0 5px 0;
+  display: flex;
+  align-items: center;
+  letter-spacing: 1px;
+  
+  @media (min-width: 768px) {
+    font-size: 2.5rem;
+  }
+}
+
+.title-icon {
+  margin-right: 10px;
+  color: #ffffff;
+  font-size: 1.8rem;
+}
+
+.dashboard-subtitle {
+  color: #aaaaaa;
+  margin: 0;
+  font-size: 0.9rem;
+  letter-spacing: 0.5px;
+}
+
+.add-button {
+  --background: linear-gradient(135deg, #333333 0%, #222222 100%);
+  --background-activated: #222222;
+  --background-hover: #444444;
+  --color: #ffffff;
+  --border-radius: 12px;
+  --padding-start: 20px;
+  --padding-end: 20px;
+  height: 50px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 15px rgba(255, 215, 0, 0.1);
+  transition: all 0.3s ease;
+  
+  ion-icon {
+    font-size: 1.2rem;
+  }
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 215, 0, 0.2);
+  }
+}
+
+.restaurant-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 25px;
+  
+  @media (min-width: 600px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  @media (min-width: 992px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.restaurant-card {
+  background: rgba(30, 30, 30, 0.8);
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 40px rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 15px;
+  position: relative;
+}
+
+.restaurant-name {
+  margin: 0;
+  color: #ffffff;
+  font-size: 1.4rem;
+  font-weight: 600;
+  flex: 1;
+  margin-left: 10px;
+}
+
+.card-badge {
+  background: rgba(255, 215, 0, 0.2);
+  color: #ffffff;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-left: 10px;
+}
+
+.card-content {
+  flex: 1;
+}
+
+.restaurant-info {
+  display: flex;
+  align-items: center;
+  margin: 10px 0;
+  color: #cccccc;
+  font-size: 0.95rem;
+}
+
+.info-icon {
+  margin-right: 10px;
+  color: #ffffff;
+  font-size: 1rem;
+  min-width: 20px;
+}
+
+.info-text {
+  flex: 1;
+}
+
+.action-button {
+  --color: #ffffff;
+  --padding-start: 0;
+  --padding-end: 0;
+  
+  ion-icon {
+    transition: transform 0.3s ease;
+  }
+  
+  &:hover ion-icon {
+    transform: translateX(3px);
+  }
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.restaurant-card {
+  animation: fadeIn 0.5s ease-out forwards;
+  opacity: 0;
+  
+  @for $i from 1 through 10 {
+    &:nth-child(#{$i}) {
+      animation-delay: $i * 0.1s;
+    }
+  }
+}

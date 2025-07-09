@@ -1,13 +1,44 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>dashboard</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content fullscreen class="dashboard-content">
+  <div class="dashboard-container">
+    <div class="dashboard-header">
+      <div class="header-content">
+        <h1 class="dashboard-title">
+          <ion-icon name="restaurant" class="title-icon"></ion-icon>
+          MIS RESTAURANTES
+        </h1>
+        <p class="dashboard-subtitle">Administra tus locales gastronómicos</p>
+      </div>
+      <ion-button routerLink="/form" class="add-button">
+        <ion-icon name="add-circle" slot="start"></ion-icon>
+        NUEVO RESTAURANTE
+      </ion-button>
+    </div>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">dashboard</ion-title>
-    </ion-toolbar>
-  </ion-header>
+    <div class="restaurant-list">
+      <div class="restaurant-card" *ngFor="let r of restaurantes" [routerLink]="['/details', r.id]">
+        <div class="card-header">
+          <h2 class="restaurant-name">{{ r?.nombre || 'Nombre no disponible' }}</h2>
+          <div class="card-badge" *ngIf="r?.propietario">{{ (r.propietario.split(' ') || [])[0] }}</div>
+        </div>
+        
+        <div class="card-content">
+          <p class="restaurant-info" *ngIf="r?.propietario">
+            <ion-icon name="person" class="info-icon"></ion-icon>
+            <span class="info-text">{{ r.propietario }}</span>
+          </p>
+          
+          <p class="restaurant-info" *ngIf="r?.direccion">
+            <ion-icon name="location" class="info-icon"></ion-icon>
+            <span class="info-text">{{ r.direccion }}</span>
+          </p>
+        </div>
+        
+        <div class="card-footer">
+          <ion-button fill="clear" class="action-button">
+            <ion-icon name="chevron-forward" slot="icon-only"></ion-icon>
+          </ion-button>
+        </div>
+      </div>
+    </div>
+  </div>
 </ion-content>

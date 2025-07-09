@@ -35,3 +35,12 @@
 /* @import "@ionic/angular/css/palettes/dark.always.css"; */
 /* @import "@ionic/angular/css/palettes/dark.class.css"; */
 @import '@ionic/angular/css/palettes/dark.system.css';
+
+:root {
+  --ion-background-color: #000000;
+  --ion-text-color: #ffffff;
+  --ion-color-primary: #333333;
+  --ion-color-primary-shade: #222222;
+  --ion-color-primary-tint: #444444;
+  --ion-item-background: rgba(30, 30, 30, 0.7);
+}
