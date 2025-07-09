@@ -15,6 +15,14 @@ import { CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { firstValueFrom } from 'rxjs';
+import { addIcons } from 'ionicons';
+import {
+  keyOutline,
+  eyeOutline,
+  eyeOffOutline,
+  mail,
+  mailOutline,
+} from 'ionicons/icons';
 
 @Component({
   selector: 'app-login',
@@ -39,6 +47,13 @@ export class LoginPage {
     private alertCtrl: AlertController,
     private router: Router
   ) {
+    addIcons({
+      mailOutline,
+      keyOutline,
+      eyeOutline,
+      eyeOffOutline,
+    });
+
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],

@@ -3,36 +3,47 @@
     <div class="dashboard-header">
       <div class="header-content">
         <h1 class="dashboard-title">
-          <ion-icon name="restaurant" class="title-icon"></ion-icon>
+           <ion-icon name="fast-food-outline" class="title-icon"></ion-icon>
           MIS RESTAURANTES
         </h1>
         <p class="dashboard-subtitle">Administra tus locales gastronómicos</p>
       </div>
       <ion-button routerLink="/form" class="add-button">
-        <ion-icon name="add-circle" slot="start"></ion-icon>
         NUEVO RESTAURANTE
       </ion-button>
     </div>
 
     <div class="restaurant-list">
-      <div class="restaurant-card" *ngFor="let r of restaurantes" [routerLink]="['/details', r.id]">
+      <div class="restaurant-card" *ngFor="let r of restaurantes">
         <div class="card-header">
-          <h2 class="restaurant-name">{{ r?.nombre || 'Nombre no disponible' }}</h2>
-          <div class="card-badge" *ngIf="r?.propietario">{{ (r.propietario.split(' ') || [])[0] }}</div>
+          <h2 class="restaurant-name">
+            {{ r?.nombre || 'Nombre no disponible' }}
+          </h2>
+          <div class="card-badge" *ngIf="r?.propietario">
+            {{ (r.propietario.split(' ') || [])[0] }}
+          </div>
         </div>
-        
+
         <div class="card-content">
           <p class="restaurant-info" *ngIf="r?.propietario">
             <ion-icon name="person" class="info-icon"></ion-icon>
             <span class="info-text">{{ r.propietario }}</span>
           </p>
-          
           <p class="restaurant-info" *ngIf="r?.direccion">
             <ion-icon name="location" class="info-icon"></ion-icon>
             <span class="info-text">{{ r.direccion }}</span>
           </p>
         </div>
-        
+
+        <div class="card-actions">
+          <ion-button fill="clear" class="edit-btn" (click)="editar(r)">
+            <ion-icon name="pencil-outline"></ion-icon>
+          </ion-button>
+          <ion-button fill="clear" class="delete-btn" (click)="eliminar(r.id!)">
+            <ion-icon name="trash-outline"></ion-icon>
+          </ion-button>
+        </div>
+
         <div class="card-footer">
           <ion-button fill="clear" class="action-button">
             <ion-icon name="chevron-forward" slot="icon-only"></ion-icon>

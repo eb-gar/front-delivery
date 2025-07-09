@@ -4,10 +4,13 @@ import { Restaurant } from '../models/restaurant.model';
 import { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class RestaurantService {
-  private apiUrl = 'http://localhost:3000/restaurants'; // Cambia esto si tu backend está en otra IP o puerto
+  getById(id: number) {
+    throw new Error('Method not implemented.');
+  }
+  private apiUrl = 'http://localhost:3000/restaurants';
 
   constructor(private http: HttpClient) {}
 
@@ -17,5 +20,13 @@ export class RestaurantService {
 
   create(data: Restaurant): Observable<Restaurant> {
     return this.http.post<Restaurant>(this.apiUrl, data);
+  }
+
+  update(id: number, data: Partial<Restaurant>): Observable<Restaurant> {
+    return this.http.patch<Restaurant>(`${this.apiUrl}/${id}`, data);
+  }
+
+  delete(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
 }

@@ -9,6 +9,10 @@
 
       <form [formGroup]="loginForm" class="login-form">
         <ion-item lines="none" class="form-item">
+          <ion-button slot="start" fill="clear" color="dark">
+            <ion-icon slot="icon-only" name="mail-outline"></ion-icon>
+          </ion-button>
+
           <ion-input
             label="Correo Electrónico"
             labelPlacement="floating"
@@ -23,6 +27,10 @@
         </ion-item>
 
         <ion-item lines="none" class="form-item">
+          <ion-button slot="start" fill="clear" color="dark">
+            <ion-icon slot="icon-only" name="key-outline"></ion-icon>
+          </ion-button>
+
           <ion-input
             label="Contraseña"
             labelPlacement="floating"
@@ -34,16 +42,14 @@
             required
           >
           </ion-input>
+
           <ion-button
             fill="clear"
             slot="end"
             (click)="togglePassword()"
-            class="eye-button"
+            color="dark"
           >
-            <ion-icon
-              [name]="showPassword ? 'eye-off-outline' : 'eye-outline'"
-              color="light"
-            ></ion-icon>
+            <ion-icon slot="icon-only" [name]="'eye-outline'"></ion-icon>
           </ion-button>
         </ion-item>
 
@@ -58,7 +64,8 @@
         </ion-button>
 
         <div class="login-footer">
-          <p>¿No tienes cuenta? </p><a
+          <p>¿No tienes cuenta?</p>
+          <a
             href="#"
             (click)="goToRegister(); $event.preventDefault()"
             class="signup-link"

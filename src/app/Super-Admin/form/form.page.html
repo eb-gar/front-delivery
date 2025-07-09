@@ -1,29 +1,48 @@
 <ion-content fullscreen class="form-content">
   <div class="form-wrapper">
     <div class="form-container">
-      <form (ngSubmit)="crear()">
-        <ion-label class="form-title">CREAR RESTAURANTE</ion-label>
-        
+      <form (ngSubmit)="guardar()">
+        <ion-label class="form-title">
+          {{ isEditing ? 'EDITAR RESTAURANTE' : 'CREAR RESTAURANTE' }}
+        </ion-label>
+
         <div class="form-fields">
           <ion-item class="form-item">
-            <ion-label position="floating" class="input-label">Nombre</ion-label>
-            <ion-input [(ngModel)]="restaurante.nombre" name="nombre" required></ion-input>
+            <ion-label position="floating" class="input-label"
+              >Nombre <ion-text color="danger">*</ion-text></ion-label
+            >
+            <ion-input
+              [(ngModel)]="restaurante.nombre"
+              name="nombre"
+              required
+            ></ion-input>
           </ion-item>
 
           <ion-item class="form-item">
-            <ion-label position="floating" class="input-label">Propietario</ion-label>
-            <ion-input [(ngModel)]="restaurante.propietario" name="propietario" required></ion-input>
+            <ion-label position="floating" class="input-label"
+              >Propietario <ion-text color="danger">*</ion-text></ion-label
+            >
+            <ion-input
+              [(ngModel)]="restaurante.propietario"
+              name="propietario"
+              required
+            ></ion-input>
           </ion-item>
 
           <ion-item class="form-item">
-            <ion-label position="floating" class="input-label">Dirección</ion-label>
-            <ion-input [(ngModel)]="restaurante.direccion" name="direccion"></ion-input>
+            <ion-label position="floating" class="input-label"
+              >Dirección <ion-text color="danger">*</ion-text></ion-label
+            >
+            <ion-input
+              [(ngModel)]="restaurante.direccion"
+              name="direccion"
+            ></ion-input>
           </ion-item>
         </div>
 
         <ion-button expand="block" type="submit" class="submit-btn">
-          <ion-icon name="restaurant" slot="start"></ion-icon>
-          CREAR RESTAURANTE
+          <ion-icon name="save" slot="start"></ion-icon>
+          GUARDAR
         </ion-button>
       </form>
     </div>

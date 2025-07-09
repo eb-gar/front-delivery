@@ -7,38 +7,59 @@
         <h1>Crear cuenta</h1>
       </div>
 
-      <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="register-form">
-
+      <form
+        [formGroup]="registerForm"
+        (ngSubmit)="onSubmit()"
+        class="register-form"
+      >
         <!-- Email -->
         <ion-item lines="none" class="form-item">
+          <ion-button slot="start" fill="clear" color="dark">
+            <ion-icon slot="icon-only" name="mail-outline"></ion-icon>
+          </ion-button>
           <ion-input
             label="Correo Electrónico"
             labelPlacement="floating"
             placeholder="tucorreo@ejemplo.com"
             formControlName="email"
             type="email"
-            required>
+            required
+          >
           </ion-input>
         </ion-item>
-        <ion-note *ngIf="registerForm.get('email')?.errors?.['email'] && registerForm.get('email')?.touched">
+        <ion-note
+          *ngIf="registerForm.get('email')?.errors?.['email'] && registerForm.get('email')?.touched"
+        >
           Ingresa un email válido
         </ion-note>
 
         <!-- Contraseña -->
-        <ion-item lines="none" class="form-item"> 
+        <ion-item lines="none" class="form-item">
+          <ion-button slot="start" fill="clear" color="dark">
+            <ion-icon slot="icon-only" name="key-outline"></ion-icon>
+          </ion-button>
+
           <ion-input
             label="Contraseña"
             labelPlacement="floating"
             placeholder="Crea una contraseña"
             formControlName="password"
             [type]="showPassword ? 'text' : 'password'"
-            required>
+            required
+          >
           </ion-input>
-          <ion-button fill="clear" slot="end" (click)="togglePassword()" class="eye-button">
-            <ion-icon [name]="showPassword ? 'eye-off-outline' : 'eye-outline'"></ion-icon>
+          <ion-button
+            fill="clear"
+            slot="end"
+            (click)="togglePassword()"
+            color="dark"
+          >
+            <ion-icon slot="icon-only" [name]="'eye-outline'"></ion-icon>
           </ion-button>
         </ion-item>
-        <ion-note *ngIf="registerForm.get('password')?.errors?.['minlength'] && registerForm.get('password')?.touched">
+        <ion-note
+          *ngIf="registerForm.get('password')?.errors?.['minlength'] && registerForm.get('password')?.touched"
+        >
           Mínimo 8 caracteres
         </ion-note>
 
@@ -48,7 +69,8 @@
           expand="block"
           shape="round"
           [disabled]="!registerForm.valid || isLoading"
-          class="register-button">
+          class="register-button"
+        >
           <ion-spinner *ngIf="isLoading" name="crescent"></ion-spinner>
           <span *ngIf="!isLoading">
             Registrarse
