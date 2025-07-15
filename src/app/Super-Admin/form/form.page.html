@@ -8,76 +8,35 @@
 
         <div class="form-fields">
           <ion-item class="form-item">
-            <ion-label position="floating" class="input-label">
-              Nombre <ion-text color="danger">*</ion-text>
-            </ion-label>
+            <ion-label position="floating" class="input-label"
+              >Nombre <ion-text color="danger">*</ion-text></ion-label
+            >
             <ion-input
               [(ngModel)]="restaurante.nombre"
               name="nombre"
-              required>
-            </ion-input>
+              required
+            ></ion-input>
           </ion-item>
 
           <ion-item class="form-item">
-            <ion-label position="floating" class="input-label">
-              Propietario <ion-text color="danger">*</ion-text>
-            </ion-label>
+            <ion-label position="floating" class="input-label"
+              >Propietario <ion-text color="danger">*</ion-text></ion-label
+            >
             <ion-input
               [(ngModel)]="restaurante.propietario"
               name="propietario"
-              required>
-            </ion-input>
+              required
+            ></ion-input>
           </ion-item>
 
           <ion-item class="form-item">
-            <ion-label position="floating" class="input-label">
-              Dirección <ion-text color="danger">*</ion-text>
-            </ion-label>
+            <ion-label position="floating" class="input-label"
+              >Dirección <ion-text color="danger">*</ion-text></ion-label
+            >
             <ion-input
               [(ngModel)]="restaurante.direccion"
-              name="direccion">
-            </ion-input>
-          </ion-item>
-
-          <!-- Campo color primario -->
-          <ion-item class="form-item">
-            <ion-label position="floating" class="input-label">
-              Color Primario <ion-text color="danger">*</ion-text>
-            </ion-label>
-            <ion-input
-              type="color"
-              [(ngModel)]="restaurante.primaryColor"
-              name="primaryColor">
-            </ion-input>
-          </ion-item>
-
-          <!-- Campo color secundario -->
-          <ion-item class="form-item">
-            <ion-label position="floating" class="input-label">
-              Color Secundario <ion-text color="danger">*</ion-text>
-            </ion-label>
-            <ion-input
-              type="color"
-              [(ngModel)]="restaurante.secondaryColor"
-              name="secondaryColor">
-            </ion-input>
-          </ion-item>
-
-          <!-- Selección de imagen -->
-          <ion-item class="form-item">
-            <ion-label position="floating" class="input-label">
-              Logo del Restaurante <ion-text color="danger">*</ion-text>
-            </ion-label>
-            <input 
-              type="file" 
-              (change)="onFileSelected($event)" 
-              class="file-input"
-            />
-          </ion-item>
-
-          <!-- Vista previa (opcional) -->
-          <ion-item *ngIf="previewUrl" class="form-item" lines="none">
-            <img [src]="previewUrl" width="100" class="image-preview"/>
+              name="direccion"
+            ></ion-input>
           </ion-item>
         </div>
 

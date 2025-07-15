@@ -71,17 +71,6 @@ ion-input:focus-within {
   --placeholder-color: #999999;
 }
 
-.file-input {
-  color: #ffffff;
-  padding: 30px 0;
-  width: 100%;
-}
-
-.image-preview {
-  margin: 0 auto;
-  display: block;
-}
-
 .submit-btn {
   --background: linear-gradient(135deg, #333333 0%, #1a1a1a 100%);
   --background-activated: #1a1a1a;
@@ -115,11 +104,4 @@ ion-input:focus-within {
     opacity: 1;
     transform: translateY(0);
   }
-}
-
-::ng-deep .custom-alert {
-  --background: #1c1c1c;
-  --color: white;
-  --button-color: #ffcc00;
-  font-family: 'Roboto', sans-serif;
 }

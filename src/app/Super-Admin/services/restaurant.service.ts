@@ -18,10 +18,6 @@ export class RestaurantService {
     return this.http.get<Restaurant[]>(this.apiUrl);
   }
 
-  uploadLogo(id: number, formData: FormData) {
-    return this.http.post(`${this.apiUrl}/${id}/upload-logo`, formData);
-  }
-
   create(data: Restaurant): Observable<Restaurant> {
     return this.http.post<Restaurant>(this.apiUrl, data);
   }
