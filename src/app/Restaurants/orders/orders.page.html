@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Pedidos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-list *ngIf="pedidos.length > 0">
+    <ion-item *ngFor="let pedido of pedidos">
+      <ion-label>
+        <h2>Cliente: {{ pedido.cliente }}</h2>
+        <p>Estado: {{ pedido.estado }}</p>
+        <p>Total: ${{ pedido.total }}</p>
+        <p>Fecha: {{ pedido.createdAt | date:'short' }}</p>
+      </ion-label>
+      <ion-select interface="popover" placeholder="Cambiar estado" (ionChange)="cambiarEstado(pedido.id, $event.detail.value)">
+        <ion-select-option value="preparando">Preparando</ion-select-option>
+        <ion-select-option value="listo">Listo</ion-select-option>
+        <ion-select-option value="entregado">Entregado</ion-select-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
+
+  <div *ngIf="pedidos.length === 0" class="ion-text-center">
+    <p>No hay pedidos aún</p>
+  </div>
+</ion-content>
