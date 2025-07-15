@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Perfil del Restaurante</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <form (ngSubmit)="guardar()">
+    <ion-item>
+      <ion-label position="floating">Nombre</ion-label>
+      <ion-input [(ngModel)]="data.nombre" name="nombre" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Dirección</ion-label>
+      <ion-input [(ngModel)]="data.direccion" name="direccion"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Color Primario</ion-label>
+      <ion-input type="color" [(ngModel)]="data.primaryColor" name="primaryColor"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Color Secundario</ion-label>
+      <ion-input type="color" [(ngModel)]="data.secondaryColor" name="secondaryColor"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Logo</ion-label>
+      <input type="file" (change)="onFileSelected($event)" />
+    </ion-item>
+
+    <div class="ion-text-center" *ngIf="previewUrl">
+      <img [src]="previewUrl" width="100" style="margin-top: 16px;" />
+    </div>
+
+    <ion-button expand="block" type="submit" class="ion-margin-top">
+      Guardar Cambios
+    </ion-button>
+  </form>
+</ion-content>

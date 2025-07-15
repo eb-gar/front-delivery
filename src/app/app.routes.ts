@@ -22,4 +22,16 @@ export const routes: Routes = [
     path: 'dashboard',
     loadComponent: () => import('./Super-Admin/dashboard/dashboard.page').then( m => m.DashboardPage)
   },
+  {
+    path: 'login-admin',
+    loadComponent: () => import('./Restaurants/login-admin/login-admin.page').then( m => m.LoginAdminPage)
+  },
+  {
+    path: 'home',
+    loadComponent: () => import('./Restaurants/home/home.page').then( m => m.HomePage)
+  },
+  {
+    path: 'profile',
+    loadComponent: () => import('./Restaurants/profile/profile.page').then( m => m.ProfilePage)
+  },
 ];

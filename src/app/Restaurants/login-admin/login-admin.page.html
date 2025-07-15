@@ -1,0 +1,31 @@
+<ion-content class="ion-padding">
+  <div class="ion-text-center">
+    <img [src]="logoUrl" *ngIf="logoUrl" width="150" style="margin-top: 50px" />
+  </div>
+
+  <form (ngSubmit)="login()" style="margin-top: 40px">
+    <ion-item>
+      <ion-label position="floating">Correo</ion-label>
+      <ion-input
+        [(ngModel)]="email"
+        name="email"
+        type="email"
+        required
+      ></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Contraseña</ion-label>
+      <ion-input
+        [(ngModel)]="password"
+        name="password"
+        type="password"
+        required
+      ></ion-input>
+    </ion-item>
+
+    <ion-button expand="block" type="submit" class="ion-margin-top">
+      Iniciar sesión
+    </ion-button>
+  </form>
+</ion-content>

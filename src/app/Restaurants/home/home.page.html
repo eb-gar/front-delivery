@@ -1,0 +1,13 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Bienvenido</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="ion-text-center">
+    <img [src]="logoUrl" width="150" *ngIf="logoUrl" />
+    <h2 class="ion-margin-top">{{ restaurantName }}</h2>
+    <p>Gestión del restaurante</p>
+  </div>
+</ion-content>
