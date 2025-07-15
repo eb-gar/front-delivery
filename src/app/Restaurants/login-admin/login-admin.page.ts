@@ -17,7 +17,7 @@ export class LoginAdminPage {
   email = '';
   password = '';
   logoUrl = '';
-  restaurantId = 1; // ⚠️ HARDCODEADO, pero puedes hacerlo dinámico con QR o selección
+  restaurantId = 1; 
 
   constructor(
     private http: HttpClient,
@@ -26,7 +26,6 @@ export class LoginAdminPage {
   ) {}
 
   ionViewWillEnter() {
-    // Cargar logo desde el backend antes de loguear
     this.http.get<any>(`http://localhost:3000/restaurants/${this.restaurantId}/config`) 
       .subscribe(res => {
         this.logoUrl = res.logoUrl;
@@ -56,7 +55,6 @@ export class LoginAdminPage {
         localStorage.setItem('token', res.access_token);
         localStorage.setItem('restaurantId', res.restaurantId);
 
-        // Aplicar colores
         this.http.get<any>(`http://localhost:3000/restaurants/${res.restaurantId}/config`) 
           .subscribe(config => {
             document.documentElement.style.setProperty('--ion-color-primary', config.primaryColor);

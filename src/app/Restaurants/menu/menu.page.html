@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Platos</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="irAFormulario()">
+        <ion-icon name="add-circle" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-list *ngIf="platos.length > 0">
+    <ion-item *ngFor="let plato of platos">
+      <ion-thumbnail slot="start">
+        <img [src]="plato.imageUrl || 'assets/placeholder.png'" />
+      </ion-thumbnail>
+      <ion-label>
+        <h2>{{ plato.name }}</h2>
+        <p>{{ plato.description }}</p>
+        <ion-text color="medium">${{ plato.price }}</ion-text>
+      </ion-label>
+      <ion-button fill="clear" color="primary" (click)="irAFormulario(plato)">Editar</ion-button>
+      <ion-button fill="clear" color="danger" (click)="eliminar(plato.id)">Eliminar</ion-button>
+    </ion-item>
+  </ion-list>
+
+  <div *ngIf="platos.length === 0" class="ion-text-center">
+    <p>No hay platos aún</p>
+  </div>
+</ion-content>

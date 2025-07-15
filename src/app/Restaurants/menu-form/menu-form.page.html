@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>{{ isEdit ? 'Editar Plato' : 'Nuevo Plato' }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <form (ngSubmit)="guardar()">
+    <ion-item>
+      <ion-label position="floating">Nombre</ion-label>
+      <ion-input [(ngModel)]="plato.name" name="name" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Descripción</ion-label>
+      <ion-textarea [(ngModel)]="plato.description" name="description"></ion-textarea>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Precio</ion-label>
+      <ion-input type="number" step="0.01" [(ngModel)]="plato.price" name="price" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Imagen</ion-label>
+      <input type="file" (change)="onFileSelected($event)" />
+    </ion-item>
+
+    <div class="ion-text-center" *ngIf="previewUrl">
+      <img [src]="previewUrl" width="100" style="margin-top: 16px;" />
+    </div>
+
+    <ion-button expand="block" type="submit" class="ion-margin-top">
+      Guardar
+    </ion-button>
+  </form>
+</ion-content>

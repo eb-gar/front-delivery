@@ -33,5 +33,13 @@ export const routes: Routes = [
   {
     path: 'profile',
     loadComponent: () => import('./Restaurants/profile/profile.page').then( m => m.ProfilePage)
+  },  {
+    path: 'menu',
+    loadComponent: () => import('./Restaurants/menu/menu.page').then( m => m.MenuPage)
   },
+  {
+    path: 'menu-form',
+    loadComponent: () => import('./Restaurants/menu-form/menu-form.page').then( m => m.MenuFormPage)
+  },
+
 ];
