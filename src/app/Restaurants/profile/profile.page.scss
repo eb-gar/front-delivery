@@ -1,0 +1,203 @@
+.profile-content {
+  --background: #f8f9fa;
+  --ion-text-color: #343a40;
+
+  .profile-form {
+    max-width: 800px;
+    margin: 0 auto;
+    padding-bottom: 20px;
+  }
+
+  .logo-section {
+    padding: 20px 0;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    margin-bottom: 16px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    border-radius: 0 0 20px 20px;
+
+    .logo-preview {
+      width: 150px;
+      height: 150px;
+      margin: 0 auto;
+      border-radius: 50%;
+      background: #f8f9fa;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      border: 3px solid var(--ion-color-light);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+      &:hover {
+        transform: scale(1.03);
+        border-color: var(--ion-color-primary);
+
+        .edit-overlay {
+          opacity: 1;
+        }
+      }
+    }
+
+    .restaurant-logo {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .edit-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      border-radius: 50%;
+
+      ion-icon {
+        color: rgb(15, 14, 14);
+        font-size: 2rem;
+      }
+    }
+
+    .upload-hint {
+      font-size: 0.9rem;
+      margin-top: 10px;
+      display: block;
+      color: #6c757d;
+    }
+  }
+
+  .form-section {
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    margin: 0 16px 20px;
+    background: white;
+    border: 1px solid #d0d2d4;
+
+    ion-card-header {
+      padding-bottom: 0;
+      background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+      border-radius: 12px 12px 0 0;
+
+      ion-card-title {
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: var(--ion-color-dark);
+      }
+    }
+
+    ion-card-content {
+      padding-top: 16px;
+    }
+  }
+
+  .form-item {
+    --background: #f8f9fa;
+    --border-radius: 8px;
+    --highlight-color-focused: var(--ion-color-primary);
+    margin-bottom: 16px;
+    --padding-start: 10px;
+    --border-color: #dee2e6;
+    transition: all 0.3s ease;
+
+    &:focus-within {
+      --background: #e9ecef;
+      box-shadow: 0 0 0 2px rgba(var(--ion-color-primary-rgb), 0.2);
+    }
+
+    ion-icon {
+      color: var(--ion-color-primary);
+      margin-right: 10px;
+      font-size: 1.2rem;
+    }
+
+    ion-input {
+      --color: #495057;
+      --placeholder-color: #e5ecf4;
+      --padding-start: 8px;
+    }
+  }
+
+  .color-picker-item {
+    --padding-start: 0;
+    --inner-padding-end: 0;
+    margin-bottom: 15px;
+    --background: transparent;
+
+    ion-icon {
+      color: var(--ion-color-primary);
+      margin-right: 10px;
+      font-size: 1.2rem;
+    }
+
+    ion-label {
+      color: #495057;
+      font-weight: 500;
+    }
+
+    input[type="color"] {
+      width: 40px;
+      height: 40px;
+      border: none;
+      background: none;
+      margin-left: auto;
+      cursor: pointer;
+      border-radius: 8px;
+      padding: 0;
+      border: 2px solid #dee2e6;
+    }
+
+    .color-preview {
+      width: 30px;
+      height: 30px;
+      border-radius: 6px;
+      margin-left: 10px;
+      border: 2px solid #dee2e6;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+  }
+
+  .form-actions {
+    padding: 0 16px;
+  }
+
+  .save-button {
+    --border-radius: 12px;
+    --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    --padding-top: 16px;
+    --padding-bottom: 16px;
+    height: 50px;
+    font-weight: 600;
+    margin-top: 10px;
+    transition: all 0.3s ease;
+    --color: white;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+
+    &:active {
+      transform: scale(0.98);
+      --box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    }
+
+    &:disabled {
+      opacity: 0.7;
+      --background: #adb5bd;
+    }
+
+    ion-icon {
+      transition: transform 0.3s ease;
+    }
+
+    &:hover:not(:disabled) ion-icon {
+      transform: scale(1.1);
+    }
+  }
+}

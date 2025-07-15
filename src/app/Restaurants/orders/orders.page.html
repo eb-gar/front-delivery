@@ -1,27 +1,94 @@
 <ion-header>
   <ion-toolbar color="primary">
-    <ion-title>Pedidos</ion-title>
+    <ion-title>Gestión de Pedidos</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="cargarPedidos()" fill="clear">
+        <ion-icon name="refresh-outline" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding">
-  <ion-list *ngIf="pedidos.length > 0">
-    <ion-item *ngFor="let pedido of pedidos">
-      <ion-label>
-        <h2>Cliente: {{ pedido.cliente }}</h2>
-        <p>Estado: {{ pedido.estado }}</p>
-        <p>Total: ${{ pedido.total }}</p>
-        <p>Fecha: {{ pedido.createdAt | date:'short' }}</p>
-      </ion-label>
-      <ion-select interface="popover" placeholder="Cambiar estado" (ionChange)="cambiarEstado(pedido.id, $event.detail.value)">
-        <ion-select-option value="preparando">Preparando</ion-select-option>
-        <ion-select-option value="listo">Listo</ion-select-option>
-        <ion-select-option value="entregado">Entregado</ion-select-option>
-      </ion-select>
-    </ion-item>
-  </ion-list>
+<ion-content class="orders-content">
+  <!-- Filtros -->
+  <ion-toolbar class="filters-toolbar">
+    <ion-segment [(ngModel)]="filtroEstado" (ionChange)="filtrarPedidos()">
+      <ion-segment-button value="todos">
+        <ion-label>Todos</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="preparando">
+        <ion-label>Preparando</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="listo">
+        <ion-label>Listo</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="entregado">
+        <ion-label>Entregado</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
 
-  <div *ngIf="pedidos.length === 0" class="ion-text-center">
-    <p>No hay pedidos aún</p>
+  <!-- Lista de pedidos -->
+  <div *ngIf="pedidosFiltrados.length > 0" class="orders-list">
+    <ion-card *ngFor="let pedido of pedidosFiltrados" class="order-card" [class]="'status-' + pedido.estado">
+      <ion-card-header>
+        <ion-card-title>Pedido #{{ pedido.id }}</ion-card-title>
+        <ion-card-subtitle>{{ pedido.createdAt | date:'medium' }}</ion-card-subtitle>
+      </ion-card-header>
+
+      <ion-card-content>
+        <div class="order-details">
+          <div class="customer-info">
+            <ion-icon name="person-outline"></ion-icon>
+            <span>{{ pedido.cliente || 'Cliente no especificado' }}</span>
+          </div>
+          
+          <div class="order-status">
+            <ion-badge [color]="getStatusColor(pedido.estado)">
+              {{ pedido.estado | uppercase }}
+            </ion-badge>
+          </div>
+
+          <div class="order-total">
+            <ion-icon name="cash-outline"></ion-icon>
+            <span>${{ pedido.total | number:'1.2-2' }}</span>
+          </div>
+        </div>
+
+        <ion-list class="order-items">
+          <ion-item *ngFor="let item of pedido.items">
+            <ion-thumbnail slot="start">
+              <img [src]="item.plato.imageUrl || 'assets/placeholder.png'" />
+            </ion-thumbnail>
+            <ion-label>
+              <h3>{{ item.plato.name }}</h3>
+              <p>Cantidad: {{ item.cantidad }}</p>
+              <p>${{ item.plato.price * item.cantidad | number:'1.2-2' }}</p>
+            </ion-label>
+          </ion-item>
+        </ion-list>
+
+        <div class="order-actions">
+          <ion-select 
+            interface="action-sheet" 
+            placeholder="Cambiar estado" 
+            (ionChange)="cambiarEstado(pedido.id, $event.detail.value)"
+            [value]="pedido.estado"
+          >
+            <ion-select-option value="preparando">Preparando</ion-select-option>
+            <ion-select-option value="listo">Listo para entregar</ion-select-option>
+            <ion-select-option value="entregado">Entregado</ion-select-option>
+          </ion-select>
+        </div>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+  <!-- Estado vacío -->
+  <div *ngIf="pedidosFiltrados.length === 0" class="empty-state">
+    <ion-icon name="receipt-outline" class="empty-icon"></ion-icon>
+    <h2>No hay pedidos</h2>
+    <p *ngIf="filtroEstado === 'todos'">Aún no has recibido pedidos</p>
+    <p *ngIf="filtroEstado !== 'todos'">No hay pedidos en estado {{ filtroEstado }}</p>
   </div>
 </ion-content>

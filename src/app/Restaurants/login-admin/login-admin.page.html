@@ -1,31 +1,68 @@
-<ion-content class="ion-padding">
-  <div class="ion-text-center">
-    <img [src]="logoUrl" *ngIf="logoUrl" width="150" style="margin-top: 50px" />
+<ion-content class="restaurant-theme">
+  <div class="login-background">
+    <div class="login-overlay"></div>
+
+    <div class="login-container">
+      <div class="login-header">
+        <img [src]="logoUrl" *ngIf="logoUrl" class="restaurant-logo">
+        <h1>Acceso Administrador</h1>
+        <p>Controla tu restaurante</p>
+      </div>
+
+      <form (ngSubmit)="login()" class="login-form">
+        <ion-item lines="none" class="form-item">
+          <ion-icon slot="start" name="mail-outline" class="input-icon"></ion-icon>
+          <ion-input
+            label="Correo Electrónico"
+            labelPlacement="floating"
+            placeholder="admin@restaurante.com"
+            type="email"
+            [(ngModel)]="email"
+            name="email"
+            class="custom-input"
+            mode="md"
+            required
+          ></ion-input>
+        </ion-item>
+
+        <ion-item lines="none" class="form-item">
+          <ion-icon slot="start" name="lock-closed-outline" class="input-icon"></ion-icon>
+          <ion-input
+            label="Contraseña"
+            labelPlacement="floating"
+            placeholder="Ingresa tu contraseña"
+            [type]="showPassword ? 'text' : 'password'"
+            [(ngModel)]="password"
+            name="password"
+            class="custom-input"
+            mode="md"
+            required
+          ></ion-input>
+          <ion-button
+            fill="clear"
+            slot="end"
+            (click)="togglePassword()"
+            class="eye-button"
+          >
+            <ion-icon [name]="showPassword ? 'eye-off-outline' : 'eye-outline'"></ion-icon>
+          </ion-button>
+        </ion-item>
+
+        <ion-button
+          expand="block"
+          shape="round"
+          class="login-button"
+          type="submit"
+        >
+          Ingresar al Panel
+          <ion-icon slot="end" name="restaurant-outline"></ion-icon>
+        </ion-button>
+
+        <div class="login-footer">
+          <a href="#" class="forgot-password">¿Olvidaste tu contraseña?</a>
+          <p>Contacta al soporte técnico si tienes problemas</p>
+        </div>
+      </form>
+    </div>
   </div>
-
-  <form (ngSubmit)="login()" style="margin-top: 40px">
-    <ion-item>
-      <ion-label position="floating">Correo</ion-label>
-      <ion-input
-        [(ngModel)]="email"
-        name="email"
-        type="email"
-        required
-      ></ion-input>
-    </ion-item>
-
-    <ion-item>
-      <ion-label position="floating">Contraseña</ion-label>
-      <ion-input
-        [(ngModel)]="password"
-        name="password"
-        type="password"
-        required
-      ></ion-input>
-    </ion-item>
-
-    <ion-button expand="block" type="submit" class="ion-margin-top">
-      Iniciar sesión
-    </ion-button>
-  </form>
 </ion-content>

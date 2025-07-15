@@ -1,0 +1,133 @@
+.orders-content {
+  --background: #f8f9fa;
+
+  .filters-toolbar {
+    --background: transparent;
+    padding: 8px 16px;
+
+    ion-segment {
+      --background: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+  }
+
+  .orders-list {
+    padding: 16px;
+    display: grid;
+    gap: 16px;
+
+    @media (min-width: 768px) {
+      grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    }
+  }
+
+  .order-card {
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    margin: 0;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+
+    &:hover {
+      transform: translateY(-3px);
+    }
+
+    &.status-preparando {
+      border-left: 4px solid var(--ion-color-warning);
+    }
+
+    &.status-listo {
+      border-left: 4px solid var(--ion-color-success);
+    }
+
+    &.status-entregado {
+      border-left: 4px solid var(--ion-color-primary);
+    }
+  }
+
+  .order-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+    gap: 8px;
+
+    > div {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    ion-icon {
+      font-size: 1.2rem;
+      color: var(--ion-color-medium);
+    }
+  }
+
+  .order-items {
+    background: rgba(var(--ion-color-light-rgb), 0.5);
+    border-radius: 8px;
+    margin: 0 -16px 16px;
+    padding: 8px 0;
+
+    ion-item {
+      --background: transparent;
+      --padding-start: 8px;
+      --inner-padding-end: 8px;
+
+      ion-thumbnail {
+        --size: 50px;
+        --border-radius: 8px;
+        overflow: hidden;
+      }
+
+      h3 {
+        font-weight: 500;
+        font-size: 0.9rem;
+      }
+
+      p {
+        font-size: 0.8rem;
+        color: var(--ion-color-medium);
+      }
+    }
+  }
+
+  .order-actions {
+    ion-select {
+      width: 100%;
+      --padding-start: 12px;
+      --padding-end: 12px;
+      --background: var(--ion-color-light);
+      --border-radius: 8px;
+    }
+  }
+
+  .empty-state {
+    height: 60vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+    .empty-icon {
+      font-size: 64px;
+      color: var(--ion-color-medium);
+      margin-bottom: 16px;
+    }
+
+    h2 {
+      color: var(--ion-color-dark);
+      margin-bottom: 8px;
+    }
+
+    p {
+      color: var(--ion-color-medium);
+      margin: 0;
+      max-width: 300px;
+    }
+  }
+}

@@ -1,37 +1,87 @@
 <ion-header>
   <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/menu"></ion-back-button>
+    </ion-buttons>
     <ion-title>{{ isEdit ? 'Editar Plato' : 'Nuevo Plato' }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding">
-  <form (ngSubmit)="guardar()">
-    <ion-item>
-      <ion-label position="floating">Nombre</ion-label>
-      <ion-input [(ngModel)]="plato.name" name="name" required></ion-input>
+<ion-content class="form-content">
+  <form (ngSubmit)="guardar()" class="dish-form">
+    <!-- Nombre -->
+    <ion-item lines="full" class="form-item">
+      <ion-icon name="restaurant-outline" slot="start" class="input-icon"></ion-icon>
+      <ion-input
+        label="Nombre del plato"
+        labelPlacement="floating"
+        [(ngModel)]="plato.name"
+        name="name"
+        required
+        placeholder="Ej: Lomo Saltado"
+        class="custom-input"
+      ></ion-input>
     </ion-item>
 
-    <ion-item>
-      <ion-label position="floating">Descripción</ion-label>
-      <ion-textarea [(ngModel)]="plato.description" name="description"></ion-textarea>
+    <!-- Descripción -->
+    <ion-item lines="full" class="form-item">
+      <ion-icon name="document-text-outline" slot="start" class="input-icon"></ion-icon>
+      <ion-textarea
+        label="Descripción"
+        labelPlacement="floating"
+        [(ngModel)]="plato.description"
+        name="description"
+        placeholder="Descripción detallada del plato"
+        rows="4"
+        class="custom-input"
+      ></ion-textarea>
     </ion-item>
 
-    <ion-item>
-      <ion-label position="floating">Precio</ion-label>
-      <ion-input type="number" step="0.01" [(ngModel)]="plato.price" name="price" required></ion-input>
+    <!-- Precio -->
+    <ion-item lines="full" class="form-item">
+      <ion-icon name="pricetag-outline" slot="start" class="input-icon"></ion-icon>
+      <ion-input
+        label="Precio"
+        labelPlacement="floating"
+        type="number"
+        step="0.01"
+        [(ngModel)]="plato.price"
+        name="price"
+        required
+        placeholder="0.00"
+        class="custom-input"
+      ></ion-input>
     </ion-item>
 
-    <ion-item>
-      <ion-label>Imagen</ion-label>
-      <input type="file" (change)="onFileSelected($event)" />
-    </ion-item>
-
-    <div class="ion-text-center" *ngIf="previewUrl">
-      <img [src]="previewUrl" width="100" style="margin-top: 16px;" />
+    <!-- Imagen -->
+    <div class="image-upload-container">
+      <input 
+        type="file" 
+        id="fileInput" 
+        (change)="onFileSelected($event)" 
+        accept="image/*"
+        hidden
+      />
+      <ion-label class="upload-label">Imagen del plato</ion-label>
+      
+      <div class="upload-area" (click)="triggerFileInput()">
+        <div *ngIf="!previewUrl" class="upload-placeholder">
+          <ion-icon name="image-outline" class="upload-icon"></ion-icon>
+          <p>Haz clic para seleccionar una imagen</p>
+        </div>
+        <img *ngIf="previewUrl" [src]="previewUrl" class="image-preview" />
+      </div>
     </div>
 
-    <ion-button expand="block" type="submit" class="ion-margin-top">
-      Guardar
+    <!-- Botón de guardar -->
+    <ion-button 
+      expand="block" 
+      type="submit" 
+      class="save-button"
+      [disabled]="!plato.name || !plato.price"
+    >
+      <ion-icon name="save-outline" slot="start"></ion-icon>
+      {{ isEdit ? 'Actualizar Plato' : 'Guardar Plato' }}
     </ion-button>
   </form>
 </ion-content>
