@@ -18,7 +18,7 @@ export class LoginAdminPage {
   password = '';
   logoUrl = '';
   showPassword = false;
-  restaurantId = 1;
+  restaurantId!: number;
 
   constructor(
     private http: HttpClient,
@@ -27,24 +27,28 @@ export class LoginAdminPage {
   ) {}
 
   ionViewWillEnter() {
-    this.http.get<any>(`http://localhost:3000/restaurants/${this.restaurantId}/config`)
-      .subscribe(res => {
-        this.logoUrl = res.logoUrl;
-        // Aplicar colores personalizados del restaurante
-        if (res.primaryColor) {
-          document.documentElement.style.setProperty('--ion-color-primary', res.primaryColor);
-          document.documentElement.style.setProperty('--ion-color-primary-shade', this.shadeColor(res.primaryColor, -20));
-          document.documentElement.style.setProperty('--ion-color-primary-tint', this.tintColor(res.primaryColor, 20));
-        }
-      });
-  }
+  const id = localStorage.getItem('restaurantId');
+  if (!id) return;
+
+  this.restaurantId = parseInt(id, 10);
+
+  this.http.get<any>(`http://localhost:3000/restaurants/${this.restaurantId}/config`)
+    .subscribe(res => {
+      this.logoUrl = res.logoUrl;
+
+      if (res.primaryColor) {
+        document.documentElement.style.setProperty('--ion-color-primary', res.primaryColor);
+        document.documentElement.style.setProperty('--ion-color-primary-shade', this.shadeColor(res.primaryColor, -20));
+        document.documentElement.style.setProperty('--ion-color-primary-tint', this.tintColor(res.primaryColor, 20));
+      }
+    });
+}
 
   togglePassword() {
     this.showPassword = !this.showPassword;
   }
 
   private shadeColor(color: string, percent: number) {
-    // Función para oscurecer el color
     let R = parseInt(color.substring(1,3), 16);
     let G = parseInt(color.substring(3,5), 16);
     let B = parseInt(color.substring(5,7), 16);
@@ -61,7 +65,6 @@ export class LoginAdminPage {
   }
 
   private tintColor(color: string, percent: number) {
-    // Función para aclarar el color
     return this.shadeColor(color, -percent);
   }
 
@@ -94,5 +97,9 @@ export class LoginAdminPage {
         this.mostrarAlerta('Credenciales incorrectas. Por favor, verifica tus datos.');
       }
     });
+  }
+
+  goToRegister() {
+    this.router.navigate(['/register-admin']);
   }
 }

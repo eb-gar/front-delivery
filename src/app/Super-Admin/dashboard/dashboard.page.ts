@@ -5,7 +5,7 @@ import { IonicModule, AlertController  } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
-import { add, addOutline, fastFoodOutline, pencilOutline, trashOutline } from 'ionicons/icons';
+import { addOutline, fastFoodOutline, pencilOutline, trashOutline, eyeOutline } from 'ionicons/icons';
 import { addIcons } from 'ionicons';
 
 @Component({
@@ -28,6 +28,7 @@ export class DashboardPage {
       addOutline,
       pencilOutline,
       trashOutline,
+      eyeOutline,
     });
   }
 
@@ -66,4 +67,9 @@ export class DashboardPage {
 
     await alert.present();
   }
+
+  seleccionar(r: Restaurant) {
+  localStorage.setItem('restaurantId', r.id!.toString());
+  this.router.navigate(['/login-admin']);
+}
 }
