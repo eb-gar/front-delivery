@@ -45,5 +45,25 @@ export const routes: Routes = [
     path: 'orders',
     loadComponent: () => import('./Restaurants/orders/orders.page').then( m => m.OrdersPage)
   },
+  {
+    path: 'register-client',
+    loadComponent: () => import('./Clients/register-client/register-client.page').then( m => m.RegisterClientPage)
+  },
+  {
+    path: 'login-client',
+    loadComponent: () => import('./Clients/login-client/login-client.page').then( m => m.LoginClientPage)
+  },
+  {
+    path: 'home-client',
+    loadComponent: () => import('./Clients/home-client/home-client.page').then( m => m.HomeClientPage)
+  },
+  {
+    path: 'cart-client',
+    loadComponent: () => import('./Clients/cart-client/cart-client.page').then( m => m.CartClientPage)
+  },
+  {
+    path: 'orders-client',
+    loadComponent: () => import('./Clients/orders-client/orders-client.page').then( m => m.OrdersClientPage)
+  },
 
 ];
