@@ -1,102 +1,42 @@
 <ion-header>
   <ion-toolbar color="primary">
-    <ion-buttons slot="start">
-      <ion-back-button defaultHref="/home" color="light"></ion-back-button>
-    </ion-buttons>
-    <ion-title>Configuración del Restaurante</ion-title>
+    <ion-title>Perfil del Restaurante</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="profile">
-  <form (ngSubmit)="guardar()" class="profile-form">
-    <!-- Logo Section -->
-    <div class="logo-section ion-text-center">
-      <div class="logo-preview" (click)="triggerFileInput()">
-        <img [src]="previewUrl || 'assets/restaurant-placeholder.png'" class="restaurant-logo" />
-        <div class="edit-overlay">
-          <ion-icon name="camera-outline"></ion-icon>
-        </div>
-      </div>
-      <input type="file" id="logoInput" (change)="onFileSelected($event)" accept="image/*" hidden />
-      <ion-text color="medium" class="upload-hint">Haz clic para cambiar el logo</ion-text>
+<ion-content class="ion-padding">
+  <form (ngSubmit)="guardar()">
+    <ion-item>
+      <ion-label position="floating">Nombre</ion-label>
+      <ion-input [(ngModel)]="data.nombre" name="nombre" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Dirección</ion-label>
+      <ion-input [(ngModel)]="data.direccion" name="direccion"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Color Primario</ion-label>
+      <ion-input type="color" [(ngModel)]="data.primaryColor" name="primaryColor"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Color Secundario</ion-label>
+      <ion-input type="color" [(ngModel)]="data.secondaryColor" name="secondaryColor"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Logo</ion-label>
+      <input type="file" (change)="onFileSelected($event)" />
+    </ion-item>
+
+    <div class="ion-text-center" *ngIf="previewUrl">
+      <img [src]="previewUrl" width="100" style="margin-top: 16px;" />
     </div>
 
-    <!-- Información Básica -->
-    <ion-card class="form-section">
-      <ion-card-header>
-        <ion-card-title>Información Básica</ion-card-title>
-      </ion-card-header>
-      <ion-card-content>
-        <ion-item lines="full" class="form-item">
-          <ion-icon name="restaurant-outline" slot="start" class="input-icon"></ion-icon>
-          <ion-input
-            label="Nombre del Restaurante"
-            labelPlacement="floating"
-            [(ngModel)]="data.nombre"
-            name="nombre"
-            required
-            placeholder="Ej: Mi Restaurante"
-          ></ion-input>
-        </ion-item>
-
-        <ion-item lines="full" class="form-item">
-          <ion-icon name="location-outline" slot="start" class="input-icon"></ion-icon>
-          <ion-input
-            label="Dirección"
-            labelPlacement="floating"
-            [(ngModel)]="data.direccion"
-            name="direccion"
-            placeholder="Ej: Av. Principal 123"
-          ></ion-input>
-        </ion-item>
-      </ion-card-content>
-    </ion-card>
-
-    <!-- Colores -->
-    <ion-card class="form-section">
-      <ion-card-header>
-        <ion-card-title>Personalización</ion-card-title>
-      </ion-card-header>
-      <ion-card-content>
-        <ion-item lines="none" class="color-picker-item">
-          <ion-icon name="color-palette-outline" slot="start" class="input-icon"></ion-icon>
-          <ion-label>Color Principal</ion-label>
-          <input 
-            type="color" 
-            [(ngModel)]="data.primaryColor" 
-            name="primaryColor"
-            (change)="applyColorPreview()"
-          >
-          <div class="color-preview" [style.background]="data.primaryColor"></div>
-        </ion-item>
-
-        <ion-item lines="none" class="color-picker-item">
-          <ion-icon name="color-palette-outline" slot="start" class="input-icon"></ion-icon>
-          <ion-label>Color de Acento</ion-label>
-          <input 
-            type="color" 
-            [(ngModel)]="data.secondaryColor" 
-            name="secondaryColor"
-            (change)="applyColorPreview()"
-          >
-          <div class="color-preview" [style.background]="data.secondaryColor"></div>
-        </ion-item>
-      </ion-card-content>
-    </ion-card>
-
-    <!-- Botón de Guardar -->
-    <div class="form-actions">
-      <ion-button 
-        expand="block" 
-        type="submit" 
-        class="save-button"
-        [disabled]="!data.nombre"
-        [style.--background]="data.primaryColor"
-        [style.--background-activated]="data.secondaryColor"
-      >
-        <ion-icon name="save-outline" slot="start"></ion-icon>
-        Guardar Cambios
-      </ion-button>
-    </div>
+    <ion-button expand="block" type="submit" class="ion-margin-top">
+      Guardar Cambios
+    </ion-button>
   </form>
 </ion-content>
