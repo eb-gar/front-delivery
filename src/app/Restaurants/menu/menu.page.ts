@@ -5,6 +5,8 @@ import { AlertController, LoadingController } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
+import { addIcons } from 'ionicons';
+import { addCircleOutline } from 'ionicons/icons';
 
 @Component({
   selector: 'app-menu',
@@ -28,7 +30,11 @@ export class MenuPage implements OnInit {
     private router: Router,
     private alertCtrl: AlertController,
     private loadingCtrl: LoadingController
-  ) {}
+  ) {
+    addIcons({
+      addCircleOutline, 
+    });
+  }
 
   ngOnInit() {
     this.cargarPlatos();
