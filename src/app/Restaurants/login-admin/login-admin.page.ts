@@ -5,6 +5,7 @@ import { AlertController } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
+import { firstValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-login-admin',
@@ -18,7 +19,7 @@ export class LoginAdminPage {
   password = '';
   logoUrl = '';
   showPassword = false;
-  restaurantId = 1;
+  restaurantId!: number;
 
   constructor(
     private http: HttpClient,
@@ -27,14 +28,29 @@ export class LoginAdminPage {
   ) {}
 
   ionViewWillEnter() {
-    this.http.get<any>(`http://localhost:3000/restaurants/${this.restaurantId}/config`)
-      .subscribe(res => {
+    const id = localStorage.getItem('restaurantId');
+    if (!id) return;
+
+    this.restaurantId = parseInt(id, 10);
+
+    this.http
+      .get<any>(`http://localhost:3000/restaurants/${this.restaurantId}/config`)
+      .subscribe((res) => {
         this.logoUrl = res.logoUrl;
-        // Aplicar colores personalizados del restaurante
+
         if (res.primaryColor) {
-          document.documentElement.style.setProperty('--ion-color-primary', res.primaryColor);
-          document.documentElement.style.setProperty('--ion-color-primary-shade', this.shadeColor(res.primaryColor, -20));
-          document.documentElement.style.setProperty('--ion-color-primary-tint', this.tintColor(res.primaryColor, 20));
+          document.documentElement.style.setProperty(
+            '--ion-color-primary',
+            res.primaryColor
+          );
+          document.documentElement.style.setProperty(
+            '--ion-color-primary-shade',
+            this.shadeColor(res.primaryColor, -20)
+          );
+          document.documentElement.style.setProperty(
+            '--ion-color-primary-tint',
+            this.tintColor(res.primaryColor, 20)
+          );
         }
       });
   }
@@ -44,24 +60,22 @@ export class LoginAdminPage {
   }
 
   private shadeColor(color: string, percent: number) {
-    // Función para oscurecer el color
-    let R = parseInt(color.substring(1,3), 16);
-    let G = parseInt(color.substring(3,5), 16);
-    let B = parseInt(color.substring(5,7), 16);
+    let R = parseInt(color.substring(1, 3), 16);
+    let G = parseInt(color.substring(3, 5), 16);
+    let B = parseInt(color.substring(5, 7), 16);
 
-    R = parseInt((R * (100 + percent) / 100).toString());
-    G = parseInt((G * (100 + percent) / 100).toString());
-    B = parseInt((B * (100 + percent) / 100).toString());
+    R = parseInt(((R * (100 + percent)) / 100).toString());
+    G = parseInt(((G * (100 + percent)) / 100).toString());
+    B = parseInt(((B * (100 + percent)) / 100).toString());
 
-    R = (R<255)?R:255;  
-    G = (G<255)?G:255;  
-    B = (B<255)?B:255;  
+    R = R < 255 ? R : 255;
+    G = G < 255 ? G : 255;
+    B = B < 255 ? B : 255;
 
     return `#${((1 << 24) + (R << 16) + (G << 8) + B).toString(16).slice(1)}`;
   }
 
   private tintColor(color: string, percent: number) {
-    // Función para aclarar el color
     return this.shadeColor(color, -percent);
   }
 
@@ -70,29 +84,41 @@ export class LoginAdminPage {
       header: 'Error',
       message: mensaje,
       buttons: ['OK'],
-      cssClass: 'custom-alert'
+      cssClass: 'custom-alert',
     });
     await alert.present();
   }
 
-  login() {
-    if (!this.email || !this.password) {
-      this.mostrarAlerta('Por favor, ingresa tu correo y contraseña');
-      return;
-    }
+  async login() {
+  try {
+    const res: any = await firstValueFrom(
+      this.http.post('http://localhost:3000/restaurant-admins/login', {
+        email: this.email,
+        password: this.password,
+      })
+    );
 
-    this.http.post<any>('http://localhost:3000/restaurant-admins/login', {
-      email: this.email,
-      password: this.password
-    }).subscribe({
-      next: (res) => {
-        localStorage.setItem('token', res.access_token);
-        localStorage.setItem('restaurantId', res.restaurantId);
-        this.router.navigate(['/home']);
-      },
-      error: err => {
-        this.mostrarAlerta('Credenciales incorrectas. Por favor, verifica tus datos.');
-      }
-    });
+    console.log('Respuesta del login:', res);
+
+    localStorage.setItem('access_token', res.access_token);
+    localStorage.setItem('role', res.role);
+
+    if (res.role === 'SUPER_ADMIN') {
+      this.router.navigate(['/dashboard']);
+    } else if (res.role === 'RESTAURANT_ADMIN') {
+      localStorage.setItem('restaurantId', res.restaurantId);
+      this.router.navigate(['/home']);
+    } else if (res.role === 'CLIENTE') {
+      localStorage.setItem('client_token', res.access_token); 
+      this.router.navigate(['/home-client']);
+    }
+  } catch (err) {
+    console.error('Error en login', err);
+    this.mostrarAlerta('Credenciales inválidas');
+  }
+}
+
+  goToRegister() {
+    this.router.navigate(['/register-admin']);
   }
 }

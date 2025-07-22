@@ -5,20 +5,19 @@
     <div class="login-container">
       <div class="login-header">
         <img [src]="logoUrl" *ngIf="logoUrl" class="restaurant-logo">
-        <h1>Acceso Administrador</h1>
-        <p>Controla tu restaurante</p>
+        <h1>Registro Administrador</h1>
+        <p>Crea tu cuenta de administrador</p>
       </div>
 
-      <form (ngSubmit)="login()" class="login-form">
+      <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="login-form">
         <ion-item lines="none" class="form-item">
           <ion-icon slot="start" name="mail-outline" class="input-icon"></ion-icon>
           <ion-input
             label="Correo Electrónico"
             labelPlacement="floating"
             placeholder="admin@restaurante.com"
+            formControlName="email"
             type="email"
-            [(ngModel)]="email"
-            name="email"
             class="custom-input"
             mode="md"
             required
@@ -26,14 +25,13 @@
         </ion-item>
 
         <ion-item lines="none" class="form-item">
-          <ion-icon slot="start" name="key-outline" class="input-icon"></ion-icon>
+          <ion-icon slot="start" name="key-outline" class="input-icon"></ion-icon> 
           <ion-input
             label="Contraseña"
             labelPlacement="floating"
-            placeholder="Ingresa tu contraseña"
+            placeholder="Crea tu contraseña"
+            formControlName="password"
             [type]="showPassword ? 'text' : 'password'"
-            [(ngModel)]="password"
-            name="password"
             class="custom-input"
             mode="md"
             required
@@ -53,18 +51,22 @@
           shape="round"
           class="login-button"
           type="submit"
+          [disabled]="!registerForm.valid || isLoading"
         >
-          Ingresar al Panel
-          <ion-icon slot="end" name="restaurant-outline"></ion-icon>
+          <ion-spinner *ngIf="isLoading" name="crescent"></ion-spinner>
+          <span *ngIf="!isLoading">
+            Registrarse
+            <ion-icon slot="end" name="restaurant-outline"></ion-icon>
+          </span>
         </ion-button>
 
         <div class="login-footer">
-          <p>¿No tienes cuenta?</p>
+          <p>¿Ya tienes cuenta?</p>
           <a
             href="#"
-            (click)="goToRegister(); $event.preventDefault()"
+            (click)="goToLogin(); $event.preventDefault()"
             class="signup-link"
-            >Regístrate</a
+            >Inicia sesión</a
           >
         </div>
       </form>

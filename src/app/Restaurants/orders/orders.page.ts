@@ -44,8 +44,6 @@ export class OrdersPage implements OnInit {
       });
   }
 
-  
-
   filtrarPedidos() {
     if (this.filtroEstado === 'todos') {
       this.pedidosFiltrados = [...this.pedidos];

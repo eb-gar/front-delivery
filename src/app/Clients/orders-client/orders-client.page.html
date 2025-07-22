@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Mis Pedidos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-list *ngIf="pedidos.length > 0">
+    <ion-item *ngFor="let pedido of pedidos">
+      <ion-label>
+        <h2>Estado: {{ pedido.estado }}</h2>
+        <p>Total: ${{ pedido.total }}</p>
+        <p>Fecha: {{ pedido.createdAt | date:'short' }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+  <div *ngIf="pedidos.length === 0" class="ion-text-center">
+    <p>No has realizado pedidos</p>
+  </div>
+</ion-content>

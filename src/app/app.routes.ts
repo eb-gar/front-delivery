@@ -3,7 +3,7 @@ import { Routes } from '@angular/router';
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'login',
+    redirectTo: 'login-admin',
     pathMatch: 'full',
   },
   {
@@ -33,7 +33,8 @@ export const routes: Routes = [
   {
     path: 'profile',
     loadComponent: () => import('./Restaurants/profile/profile.page').then( m => m.ProfilePage)
-  },  {
+  },
+  {
     path: 'menu',
     loadComponent: () => import('./Restaurants/menu/menu.page').then( m => m.MenuPage)
   },
@@ -45,5 +46,26 @@ export const routes: Routes = [
     path: 'orders',
     loadComponent: () => import('./Restaurants/orders/orders.page').then( m => m.OrdersPage)
   },
+  {
+    path: 'home-client',
+    loadComponent: () => import('./Clients/home-client/home-client.page').then( m => m.HomeClientPage)
+  },
+  {
+    path: 'cart-client',
+    loadComponent: () => import('./Clients/cart-client/cart-client.page').then( m => m.CartClientPage)
+  },
+  {
+    path: 'orders-client',
+    loadComponent: () => import('./Clients/orders-client/orders-client.page').then( m => m.OrdersClientPage)
+  },
+  {
+    path: 'register-admin',
+    loadComponent: () => import('./Restaurants/register-admin/register-admin.page').then( m => m.RegisterAdminPage)
+  },
+  {
+    path: 'order-status/:id',
+    loadComponent: () => import('./Clients/order-status/order-status.page').then( m => m.OrderStatusPage)
+  },
+
 
 ];

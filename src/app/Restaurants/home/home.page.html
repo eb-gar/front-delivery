@@ -3,62 +3,66 @@
     <ion-title>Panel de Control</ion-title>
     <ion-buttons slot="end">
       <ion-button (click)="logout()" fill="clear">
-        <ion-icon name="log-out-outline" slot="icon-only"></ion-icon>
+        <ion-icon name="exit-outline" slot="icon-only"></ion-icon>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="home-content">
-  <div class="welcome-container">
-    <div class="restaurant-info">
-      <div class="logo-container" *ngIf="logoUrl">
-        <img [src]="logoUrl" alt="Logo del restaurante" class="restaurant-logo">
+  <div class="home-background">
+    <div class="home-overlay"></div>
+    
+    <div class="welcome-container">
+      <div class="restaurant-info">
+        <div class="logo-container" *ngIf="logoUrl">
+          <img [src]="logoUrl" alt="Logo del restaurante" class="restaurant-logo">
+        </div>
+        <h1 class="restaurant-name">{{ restaurantName }}</h1>
+        <p class="welcome-message">Bienvenido al panel de administración</p>
       </div>
-      <h1 class="restaurant-name">{{ restaurantName }}</h1>
-      <p class="welcome-message">Bienvenido al panel de administración</p>
-    </div>
 
-    <div class="quick-actions">
-      <ion-card class="action-card" button (click)="navigateTo('/menu')">
-        <ion-icon name="restaurant-outline" class="action-icon"></ion-icon>
-        <ion-card-header>
-          <ion-card-title>Menú</ion-card-title>
-        </ion-card-header>
-        <ion-card-content>
-          Administra tu carta y platos
-        </ion-card-content>
-      </ion-card>
+      <div class="quick-actions">
+        <ion-card class="action-card" button (click)="navigateTo('/menu')">
+          <ion-icon name="storefront-outline" class="action-icon"></ion-icon>
+          <ion-card-header>
+            <ion-card-title>Menú</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            Administra tu carta y platos
+          </ion-card-content>
+        </ion-card>
 
-      <ion-card class="action-card" button (click)="navigateTo('/orders')">
-        <ion-icon name="receipt-outline" class="action-icon"></ion-icon>
-        <ion-card-header>
-          <ion-card-title>Pedidos</ion-card-title>
-        </ion-card-header>
-        <ion-card-content>
-          Revisa los pedidos actuales
-        </ion-card-content>
-      </ion-card>
+        <ion-card class="action-card" button (click)="navigateTo('/orders')">
+          <ion-icon name="receipt-outline" class="action-icon"></ion-icon>
+          <ion-card-header>
+            <ion-card-title>Pedidos</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            Revisa los pedidos actuales
+          </ion-card-content>
+        </ion-card>
 
-      <ion-card class="action-card" button (click)="navigateTo('/stats')">
-        <ion-icon name="stats-chart-outline" class="action-icon"></ion-icon>
-        <ion-card-header>
-          <ion-card-title>Estadísticas</ion-card-title>
-        </ion-card-header>
-        <ion-card-content>
-          Visualiza tus métricas
-        </ion-card-content>
-      </ion-card>
+        <ion-card class="action-card" button (click)="navigateTo('/stats')">
+          <ion-icon name="stats-chart-outline" class="action-icon"></ion-icon>
+          <ion-card-header>
+            <ion-card-title>Estadísticas</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            Visualiza tus métricas
+          </ion-card-content>
+        </ion-card>
 
-      <ion-card class="action-card" button (click)="navigateTo('/settings')">
-        <ion-icon name="settings-outline" class="action-icon"></ion-icon>
-        <ion-card-header>
-          <ion-card-title>Configuración</ion-card-title>
-        </ion-card-header>
-        <ion-card-content>
-          Personaliza tu restaurante
-        </ion-card-content>
-      </ion-card>
+        <ion-card class="action-card" button (click)="navigateTo('/settings')">
+          <ion-icon name="settings-outline" class="action-icon"></ion-icon>
+          <ion-card-header>
+            <ion-card-title>Configuración</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            Personaliza tu restaurante
+          </ion-card-content>
+        </ion-card>
+      </div>
     </div>
   </div>
 </ion-content>

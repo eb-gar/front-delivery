@@ -3,7 +3,7 @@
     <div class="dashboard-header">
       <div class="header-content">
         <h1 class="dashboard-title">
-           <ion-icon name="fast-food-outline" class="title-icon"></ion-icon>
+          <ion-icon name="fast-food-outline" class="title-icon"></ion-icon>
           MIS RESTAURANTES
         </h1>
         <p class="dashboard-subtitle">Administra tus locales gastronómicos</p>
@@ -44,11 +44,9 @@
           </ion-button>
         </div>
 
-        <div class="card-footer">
-          <ion-button fill="clear" class="action-button">
-            <ion-icon name="chevron-forward" slot="icon-only"></ion-icon>
-          </ion-button>
-        </div>
+        <ion-button fill="clear" class="action-button" (click)="seleccionar(r)">
+          <ion-icon  [name]="'eye-outline'" slot="icon-only"></ion-icon>
+        </ion-button>
       </div>
     </div>
   </div>
