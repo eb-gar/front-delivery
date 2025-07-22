@@ -5,6 +5,8 @@ import { AlertController } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
+import { addIcons } from 'ionicons';
+import { exitOutline, receiptOutline, settingsOutline, statsChartOutline, storefrontOutline } from 'ionicons/icons';
 
 @Component({
   selector: 'app-home',
@@ -21,7 +23,15 @@ export class HomePage implements OnInit {
     private http: HttpClient,
     private router: Router,
     private alertCtrl: AlertController
-  ) {}
+  ) {
+    addIcons({
+          exitOutline,
+          storefrontOutline,
+          receiptOutline,
+          statsChartOutline,
+          settingsOutline
+        });
+  }
 
   ngOnInit() {
     this.loadRestaurantData();

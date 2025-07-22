@@ -5,6 +5,7 @@ import { AlertController } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
+import { firstValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-login-admin',
@@ -78,27 +79,31 @@ export class LoginAdminPage {
     await alert.present();
   }
 
-  login() {
-    if (!this.email || !this.password) {
-      this.mostrarAlerta('Por favor, ingresa tu correo y contraseña');
-      return;
+  async login() {
+  try {
+    const res: any = await firstValueFrom(
+      this.http.post('http://localhost:3000/restaurant-admins/login', {
+        email: this.email,
+        password: this.password,
+      })
+    );
+
+    localStorage.setItem('access_token', res.access_token);
+    localStorage.setItem('role', res.role);
+
+    if (res.role === 'SUPER_ADMIN') {
+      this.router.navigate(['/dashboard']);
+    } else if (res.role === 'RESTAURANT_ADMIN') {
+      localStorage.setItem('restaurantId', res.restaurantId);
+      this.router.navigate(['/home']);
+    } else if (res.role === 'CLIENTE') {
+      this.router.navigate(['/home-client']);
     }
-
-    this.http.post<any>('http://localhost:3000/restaurant-admins/login', {
-      email: this.email,
-      password: this.password
-    }).subscribe({
-      next: (res) => {
-        localStorage.setItem('token', res.access_token);
-        localStorage.setItem('restaurantId', res.restaurantId);
-        this.router.navigate(['/home']);
-      },
-      error: err => {
-        this.mostrarAlerta('Credenciales incorrectas. Por favor, verifica tus datos.');
-      }
-    });
+  } catch (err) {
+    this.mostrarAlerta('Credenciales inválidas');
   }
-
+}
+ 
   goToRegister() {
     this.router.navigate(['/register-admin']);
   }

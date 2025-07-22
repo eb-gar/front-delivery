@@ -3,7 +3,7 @@ import { Routes } from '@angular/router';
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'login',
+    redirectTo: 'login-admin',
     pathMatch: 'full',
   },
   {
@@ -33,7 +33,8 @@ export const routes: Routes = [
   {
     path: 'profile',
     loadComponent: () => import('./Restaurants/profile/profile.page').then( m => m.ProfilePage)
-  },  {
+  },
+  {
     path: 'menu',
     loadComponent: () => import('./Restaurants/menu/menu.page').then( m => m.MenuPage)
   },
@@ -44,14 +45,6 @@ export const routes: Routes = [
   {
     path: 'orders',
     loadComponent: () => import('./Restaurants/orders/orders.page').then( m => m.OrdersPage)
-  },
-  {
-    path: 'register-client',
-    loadComponent: () => import('./Clients/register-client/register-client.page').then( m => m.RegisterClientPage)
-  },
-  {
-    path: 'login-client',
-    loadComponent: () => import('./Clients/login-client/login-client.page').then( m => m.LoginClientPage)
   },
   {
     path: 'home-client',
