@@ -4,26 +4,25 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding">
-  <ion-card *ngFor="let plato of platos">
-    <ion-img [src]="plato.imageUrl || 'assets/default.jpg'"></ion-img>
+<ion-content class="menu-content glass-background">
+  <div class="overlay"></div>
 
-    <ion-card-header>
-      <ion-card-title>{{ plato.name }}</ion-card-title>
-      <ion-card-subtitle
-        >${{ plato.price | number: '1.2-2' }}</ion-card-subtitle
-      >
-      <ion-card-content>{{ plato.description }}</ion-card-content>
-    </ion-card-header>
+  <div class="grid-container">
+    <div class="glass-card" *ngFor="let plato of platos">
+      <img [src]="plato.imageUrl || 'assets/default.jpg'" class="card-image" />
 
-    <ion-card-content>{{ plato.descripcion }}</ion-card-content>
+      <div class="card-text">
+        <h2>{{ plato.name }}</h2>
+        <h3>${{ plato.price | number: '1.2-2' }}</h3>
+        <p>{{ plato.description }}</p>
+        <ion-button expand="block" color="success" (click)="agregarAlCarrito(plato)">
+          Agregar al carrito
+        </ion-button>
+      </div>
+    </div>
+  </div>
 
-    <ion-button expand="block" (click)="agregarAlCarrito(plato)"
-      >Agregar al carrito</ion-button
-    >
-  </ion-card>
-
-  <ion-button expand="full" [routerLink]="['/cart-client']"
-    >Ir al carrito</ion-button
-  >
+  <ion-button expand="full" color="warning" [routerLink]="['/cart-client']">
+    Ir al carrito
+  </ion-button>
 </ion-content>

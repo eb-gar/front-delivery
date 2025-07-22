@@ -12,30 +12,31 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="menu-content">
+<ion-content class="menu-content glass-background">
+  <div class="overlay"></div>
+
   <!-- Lista de platos -->
-  <div *ngIf="platos.length > 0" class="dishes-container">
-    <ion-card *ngFor="let plato of platos" class="dish-card" [style.--card-color]="getRandomCardColor()">
+  <div *ngIf="platos.length > 0" class="grid-container">
+    <ion-card *ngFor="let plato of platos" class="glass-card">
       <div class="dish-image-container">
         <img [src]="plato.imageUrl || 'assets/placeholder.png'" class="dish-image" />
         <div class="price-badge">
           ${{ plato.price | number:'1.2-2' }}
         </div>
       </div>
-      
-      <ion-card-header class="dish-header">
+
+      <ion-card-header>
         <ion-card-title>{{ plato.name }}</ion-card-title>
       </ion-card-header>
-      
-      <ion-card-content class="dish-content">
+
+      <ion-card-content>
         <p class="dish-description">{{ plato.description }}</p>
-        
+
         <div class="dish-actions">
           <ion-button fill="clear" color="primary" (click)="irAFormulario(plato)">
             <ion-icon name="create-outline" slot="start"></ion-icon>
             Editar
           </ion-button>
-          
           <ion-button fill="clear" color="danger" (click)="eliminar(plato.id)">
             <ion-icon name="trash-outline" slot="start"></ion-icon>
             Eliminar
