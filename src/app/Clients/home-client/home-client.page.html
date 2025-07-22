@@ -9,14 +9,21 @@
     <ion-img [src]="plato.imageUrl || 'assets/default.jpg'"></ion-img>
 
     <ion-card-header>
-      <ion-card-title>{{ plato.nombre }}</ion-card-title>
-      <ion-card-subtitle>${{ plato.precio }}</ion-card-subtitle>
+      <ion-card-title>{{ plato.name }}</ion-card-title>
+      <ion-card-subtitle
+        >${{ plato.price | number: '1.2-2' }}</ion-card-subtitle
+      >
+      <ion-card-content>{{ plato.description }}</ion-card-content>
     </ion-card-header>
 
     <ion-card-content>{{ plato.descripcion }}</ion-card-content>
 
-    <ion-button expand="block" (click)="agregarAlCarrito(plato)">Agregar al carrito</ion-button>
+    <ion-button expand="block" (click)="agregarAlCarrito(plato)"
+      >Agregar al carrito</ion-button
+    >
   </ion-card>
 
-  <ion-button expand="full" [routerLink]="['/cart-client']">Ir al carrito</ion-button>
+  <ion-button expand="full" [routerLink]="['/cart-client']"
+    >Ir al carrito</ion-button
+  >
 </ion-content>

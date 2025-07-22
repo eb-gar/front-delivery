@@ -62,5 +62,10 @@ export const routes: Routes = [
     path: 'register-admin',
     loadComponent: () => import('./Restaurants/register-admin/register-admin.page').then( m => m.RegisterAdminPage)
   },
+  {
+    path: 'order-status/:id',
+    loadComponent: () => import('./Clients/order-status/order-status.page').then( m => m.OrderStatusPage)
+  },
+
 
 ];

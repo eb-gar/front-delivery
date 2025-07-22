@@ -10,14 +10,14 @@
   </ion-item>
 
   <ion-item *ngFor="let item of carrito">
-    <ion-thumbnail slot="start">
-      <img [src]="item.imageUrl || 'assets/default.jpg'" />
-    </ion-thumbnail>
-    <ion-label>
-      <h2>{{ item.nombre }}</h2>
-      <p>${{ item.precio }}</p>
-    </ion-label>
-  </ion-item>
+  <ion-thumbnail slot="start">
+    <img [src]="item.imageUrl || 'assets/default.jpg'" />
+  </ion-thumbnail>
+  <ion-label>
+    <h2>{{ item.name }}</h2>
+    <p>${{ item.price | number: '1.2-2' }}</p>
+  </ion-label>
+</ion-item>
 
   <h3 class="ion-text-end ion-padding">Total: ${{ total }}</h3>
 

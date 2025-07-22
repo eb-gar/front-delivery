@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Estado del Pedido</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ng-container *ngIf="pedido">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Pedido #{{ pedido.id }}</ion-card-title>
+        <ion-card-subtitle
+          >{{ pedido.createdAt | date: 'medium' }}</ion-card-subtitle
+        >
+      </ion-card-header>
+      <ion-card-content>
+        <p>
+          <strong>Estado:</strong>
+          <ion-badge [color]="getStatusColor(pedido.estado)">
+            {{ pedido.estado | uppercase }}
+          </ion-badge>
+        </p>
+        <p><strong>Total:</strong> ${{ pedido.total | number: '1.2-2' }}</p>
+        <ion-list>
+          <ion-item *ngFor="let item of pedido.items">
+            <ion-thumbnail slot="start">
+              <img [src]="item.plato?.imageUrl || 'assets/default.jpg'" />
+            </ion-thumbnail>
+            <ion-label>
+              <h3>{{ item.plato.name }}</h3>
+              <p>Cantidad: {{ item.cantidad }}</p>
+              <p>
+                Subtotal: ${{ (item.plato?.price || 0) * item.cantidad | number:
+                '1.2-2' }}
+              </p>
+            </ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+  </ng-container>
+
+  <ion-spinner *ngIf="!pedido" name="crescent"></ion-spinner>
+</ion-content>

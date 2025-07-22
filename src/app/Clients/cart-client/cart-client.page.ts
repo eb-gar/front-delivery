@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { addIcons } from 'ionicons';
+import { trashOutline } from 'ionicons/icons';
 
 @Component({
   selector: 'app-client-cart',
@@ -18,13 +20,17 @@ export class CartClientPage implements OnInit {
   clientToken = localStorage.getItem('client_token');
   restaurantId = localStorage.getItem('restaurantId');
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private http: HttpClient, private router: Router) {
+    addIcons({
+      trashOutline,
+    });
+  }
 
   ngOnInit() {
     const storedCart = localStorage.getItem('carrito');
     if (storedCart) {
       this.carrito = JSON.parse(storedCart);
-      this.total = this.carrito.reduce((sum, p) => sum + p.precio, 0);
+      this.total = this.carrito.reduce((sum, p) => sum + p.price, 0);
     }
   }
 
@@ -34,14 +40,34 @@ export class CartClientPage implements OnInit {
   const tokenData = JSON.parse(atob(this.clientToken.split('.')[1]));
   const clientId = tokenData.sub;
 
-  this.http.post('http://localhost:3000/client-auth/cliente', {
-    clientId,
+  const items = this.carrito.map(p => ({
+  platoId: Number(p.platoId), // ← Asegúrate que sea un número
+  cantidad: Number(p.cantidad || 1)
+}));
+
+console.log('🛒 Enviando pedido:', {
+  clientId,
+  restaurantId: Number(this.restaurantId),
+  estado: 'pendiente',
+  total: this.total,
+  items
+});
+
+
+  const body = {
+    clientId: Number(clientId),
     restaurantId: Number(this.restaurantId),
+    estado: 'pendiente',
     total: this.total,
-    items: this.carrito.map(p => p.nombre)
-  }).subscribe(() => {
-    localStorage.removeItem('carrito');
-    this.router.navigate(['/orders-client']);
-  });
+    items
+  };
+
+  this.http.post('http://localhost:3000/orders', body).subscribe(
+    (pedidoCreado: any) => {
+      localStorage.removeItem('carrito');
+      this.router.navigate(['/order-status', pedidoCreado.id]);
+    }, error => {
+  console.error('Error al crear el pedido:', error.error.message);
+});
 }
 }

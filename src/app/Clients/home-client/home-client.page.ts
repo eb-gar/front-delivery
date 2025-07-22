@@ -20,19 +20,32 @@ export class HomeClientPage implements OnInit {
   constructor(private http: HttpClient) {}
 
   ngOnInit() {
-  const storedCart = localStorage.getItem('carrito');
-  if (storedCart) {
-    this.carrito = JSON.parse(storedCart);
+    const storedCart = localStorage.getItem('carrito');
+    if (storedCart) {
+      this.carrito = JSON.parse(storedCart);
+    }
+
+    this.http
+      .get<any[]>(
+        `http://localhost:3000/dishes/restaurant/${this.restaurantId}`
+      )
+      .subscribe((res) => {
+        this.platos = res;
+      });
   }
 
-  this.http.get<any[]>(`http://localhost:3000/dishes/restaurant/${this.restaurantId}`).subscribe(res => {
-    this.platos = res;
-  });
-}
+  agregarAlCarrito(plato: any) {
+    const carritoActual = JSON.parse(localStorage.getItem('carrito') || '[]');
 
-agregarAlCarrito(plato: any) {
-  const carritoActual = JSON.parse(localStorage.getItem('carrito') || '[]');
-  carritoActual.push(plato);
-  localStorage.setItem('carrito', JSON.stringify(carritoActual));
-}
+     const item = {
+    name: plato.name,
+    price: plato.price,
+    imageUrl: plato.imageUrl,
+    cantidad: 1,           // Puedes permitir modificar esto después
+    platoId: plato.id      // 👈 ¡Esto es lo más importante!
+  };
+
+    carritoActual.push(item);
+    localStorage.setItem('carrito', JSON.stringify(carritoActual));
+  }
 }
