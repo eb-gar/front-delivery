@@ -6,6 +6,13 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 import { firstValueFrom } from 'rxjs';
+import { addIcons } from 'ionicons';
+import {
+  mailOutline,
+  keyOutline,
+  eyeOutline,
+  eyeOffOutline,
+} from 'ionicons/icons';
 
 @Component({
   selector: 'app-login-admin',
@@ -25,7 +32,14 @@ export class LoginAdminPage {
     private http: HttpClient,
     private router: Router,
     private alertCtrl: AlertController
-  ) {}
+  ) {
+    addIcons({
+      mailOutline,
+      keyOutline,
+      eyeOutline,
+      eyeOffOutline,
+    });
+  }
 
   ionViewWillEnter() {
     const id = localStorage.getItem('restaurantId');
@@ -90,33 +104,33 @@ export class LoginAdminPage {
   }
 
   async login() {
-  try {
-    const res: any = await firstValueFrom(
-      this.http.post('http://localhost:3000/restaurant-admins/login', {
-        email: this.email,
-        password: this.password,
-      })
-    );
+    try {
+      const res: any = await firstValueFrom(
+        this.http.post('http://localhost:3000/restaurant-admins/login', {
+          email: this.email,
+          password: this.password,
+        })
+      );
 
-    console.log('Respuesta del login:', res);
+      console.log('Respuesta del login:', res);
 
-    localStorage.setItem('access_token', res.access_token);
-    localStorage.setItem('role', res.role);
+      localStorage.setItem('access_token', res.access_token);
+      localStorage.setItem('role', res.role);
 
-    if (res.role === 'SUPER_ADMIN') {
-      this.router.navigate(['/dashboard']);
-    } else if (res.role === 'RESTAURANT_ADMIN') {
-      localStorage.setItem('restaurantId', res.restaurantId);
-      this.router.navigate(['/home']);
-    } else if (res.role === 'CLIENTE') {
-      localStorage.setItem('client_token', res.access_token); 
-      this.router.navigate(['/home-client']);
+      if (res.role === 'SUPER_ADMIN') {
+        this.router.navigate(['/dashboard']);
+      } else if (res.role === 'RESTAURANT_ADMIN') {
+        localStorage.setItem('restaurantId', res.restaurantId);
+        this.router.navigate(['/home']);
+      } else if (res.role === 'CLIENTE') {
+        localStorage.setItem('client_token', res.access_token);
+        this.router.navigate(['/home-client']);
+      }
+    } catch (err) {
+      console.error('Error en login', err);
+      this.mostrarAlerta('Credenciales inválidas');
     }
-  } catch (err) {
-    console.error('Error en login', err);
-    this.mostrarAlerta('Credenciales inválidas');
   }
-}
 
   goToRegister() {
     this.router.navigate(['/register-admin']);

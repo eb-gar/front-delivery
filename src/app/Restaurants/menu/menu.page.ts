@@ -6,7 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 import { addIcons } from 'ionicons';
-import { addCircleOutline } from 'ionicons/icons';
+import { addCircleOutline, addOutline } from 'ionicons/icons';
 
 @Component({
   selector: 'app-menu',
@@ -33,6 +33,7 @@ export class MenuPage implements OnInit {
   ) {
     addIcons({
       addCircleOutline, 
+      addOutline
     });
   }
 
