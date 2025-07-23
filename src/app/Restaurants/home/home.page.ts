@@ -75,7 +75,7 @@ export class HomePage implements OnInit {
           handler: () => {
             localStorage.removeItem('token');
             localStorage.removeItem('restaurantId');
-            this.router.navigate(['/login']);
+            this.router.navigate(['/LoginAdmin']);
           }
         }
       ]

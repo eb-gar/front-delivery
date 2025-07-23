@@ -79,7 +79,7 @@ export class RegisterAdminPage {
         buttons: ['OK'],
       });
       await alert.present();
-      this.router.navigate(['/login-admin']);
+      this.router.navigate(['/loginAdmin']);
     } catch (err: any) {
       const alert = await this.alertCtrl.create({
         header: 'Error',
@@ -97,7 +97,7 @@ export class RegisterAdminPage {
   }
 
   goToLogin() {
-    this.navCtrl.navigateForward('/login-admin', { animated: false });
+    this.navCtrl.navigateForward('/loginAdmin', { animated: false });
   }
 
   private shadeColor(color: string, percent: number) {

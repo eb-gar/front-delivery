@@ -15,7 +15,7 @@ import {
 } from 'ionicons/icons';
 
 @Component({
-  selector: 'app-login-admin',
+  selector: 'app-loginAdmin',
   templateUrl: './login-admin.page.html',
   styleUrls: ['./login-admin.page.scss'],
   standalone: true,

@@ -23,7 +23,7 @@ export const routes: Routes = [
     loadComponent: () => import('./Super-Admin/dashboard/dashboard.page').then( m => m.DashboardPage)
   },
   {
-    path: 'login-admin',
+    path: 'loginAdmin',
     loadComponent: () => import('./Restaurants/login-admin/login-admin.page').then( m => m.LoginAdminPage)
   },
   {
@@ -63,9 +63,7 @@ export const routes: Routes = [
     loadComponent: () => import('./Restaurants/register-admin/register-admin.page').then( m => m.RegisterAdminPage)
   },
   {
-    path: 'order-status/:id',
+    path: 'order-status',
     loadComponent: () => import('./Clients/order-status/order-status.page').then( m => m.OrderStatusPage)
   },
-
-
 ];
