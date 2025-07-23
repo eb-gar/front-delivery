@@ -1,112 +1,126 @@
-.form-content {
-  --background: #1a1a2e;
-  --ion-text-color: #ffffff;
+ion-content {
+  --background: transparent;
+  position: relative;
+  height: 100%;
+}
 
-  .dish-form {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 20px;
-  }
+.login-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('https://i.imgur.com/GmHxceE.png') no-repeat center center;
+  background-size: cover;
+  z-index: 0;
+  filter: brightness(0.6) blur(3px); // opcional: suaviza fondo
+}
 
-  .form-item {
-    --background: rgba(255, 255, 255, 0.1);
-    --border-radius: 12px;
-    --highlight-color-focused: var(--ion-color-primary);
-    margin-bottom: 20px;
-    transition: all 0.3s ease;
+.form-wrapper {
+  position: relative;
+  z-index: 1;
+  padding: 24px;
+  max-width: 500px;
+  margin: 40px auto;
+  background-color: rgba(0, 0, 0, 0.65);
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(8px);
+}
 
-    &:focus-within {
-      border: 1px solid var(--ion-color-primary);
-      box-shadow: 0 0 0 2px rgba(233, 69, 96, 0.3);
-    }
-  }
+.dish-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
 
-  .input-icon {
-    color: var(--ion-color-primary);
-    margin-right: 10px;
-    font-size: 1.2rem;
-  }
+.form-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  padding: 12px;
+}
 
-  ion-input, ion-textarea {
-    --color: #ffffff;
-    --placeholder-color: #aaaaaa;
-    --padding-start: 10px;
-  }
+ion-input,
+ion-textarea {
+  --background: transparent;
+  --color: white;
+  --placeholder-color: #ccc;
+  --padding-start: 0;
+  --padding-end: 0;
+  --highlight-color-focused: #ff9800;
+  flex: 1;
+  width: 100%;
+}
 
-  .image-upload-container {
-    margin: 25px 0;
+.input-icon {
+  font-size: 20px;
+  color: #ff9800;
+}
 
-    .upload-label {
-      display: block;
-      margin-bottom: 10px;
-      color: #ffffff;
-      font-weight: 500;
-    }
+.input-wrapper {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
 
-    .upload-area {
-      background: rgba(255, 255, 255, 0.1);
-      border: 2px dashed rgba(255, 255, 255, 0.3);
-      border-radius: 12px;
-      height: 200px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      overflow: hidden;
+.currency-symbol {
+  position: absolute;
+  right: 10px;
+  font-weight: bold;
+  color: #fff;
+  pointer-events: none;
+}
 
-      &:hover {
-        border-color: var(--ion-color-primary);
-        background: rgba(233, 69, 96, 0.1);
-      }
-    }
+/* Upload Section */
+.upload-label {
+  color: #fff;
+  margin-bottom: 8px;
+  display: block;
+}
 
-    .upload-placeholder {
-      text-align: center;
-      color: #aaaaaa;
+.upload-area {
+  border: 2px dashed #aaa;
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+  cursor: pointer;
+  background-color: rgba(255, 255, 255, 0.05);
+  transition: border-color 0.3s ease, background-color 0.3s ease;
+}
 
-      .upload-icon {
-        font-size: 48px;
-        margin-bottom: 10px;
-      }
+.upload-area:hover {
+  border-color: #ff9800;
+  background-color: rgba(255, 255, 255, 0.1);
+}
 
-      p {
-        margin: 0;
-        font-size: 0.9rem;
-      }
-    }
+.upload-placeholder {
+  color: #ccc;
+  font-size: 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
 
-    .image-preview {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-  }
+.upload-icon {
+  font-size: 32px;
+  color: #ccc;
+}
 
-  .save-button {
-    --background: linear-gradient(135deg, var(--ion-color-primary) 0%, var(--ion-color-primary-shade) 100%);
-    --background-activated: var(--ion-color-primary-shade);
-    --background-hover: var(--ion-color-primary-tint);
-    --box-shadow: 0 4px 15px rgba(233, 69, 96, 0.4);
-    --color: #ffffff;
-    margin-top: 30px;
-    height: 50px;
-    font-weight: 600;
-    border-radius: 12px;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+.image-preview {
+  width: 100%;
+  max-height: 250px;
+  object-fit: cover;
+  border-radius: 10px;
+}
 
-    &:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(233, 69, 96, 0.5);
-    }
-
-    &:active {
-      transform: translateY(0);
-    }
-
-    &:disabled {
-      --background: rgba(50, 50, 50, 0.5);
-      opacity: 0.7;
-    }
-  }
+.save-button {
+  --background: #ff9800;
+  --background-activated: #e68900;
+  font-weight: bold;
+  border-radius: 10px;
 }
