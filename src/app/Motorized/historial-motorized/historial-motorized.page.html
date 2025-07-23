@@ -1,0 +1,15 @@
+<ion-header><ion-toolbar><ion-title>Historial</ion-title></ion-toolbar></ion-header>
+<ion-content class="ion-padding">
+  <ion-list *ngIf="orders.length > 0; else noOrders">
+    <ion-item *ngFor="let order of orders">
+      <ion-label>
+        <h3>{{ order.customerName }}</h3>
+        <p>{{ order.address }}</p>
+        <p>{{ order.createdAt | date }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+  <ng-template #noOrders>
+    <p>No hay pedidos entregados aún.</p>
+  </ng-template>
+</ion-content>

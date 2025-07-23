@@ -66,4 +66,21 @@ export const routes: Routes = [
     path: 'order-status',
     loadComponent: () => import('./Clients/order-status/order-status.page').then( m => m.OrderStatusPage)
   },
+  {
+    path: 'home-motorized',
+    loadComponent: () => import('./Motorized/home-motorized/home-motorized.page').then( m => m.HomeMotorizedPage)
+  },
+  {
+    path: 'profile-motorized',
+    loadComponent: () => import('./Motorized/profile-motorized/profile-motorized.page').then( m => m.ProfileMotorizedPage)
+  },
+  {
+    path: 'history-motorized',
+    loadComponent: () => import('./Motorized/historial-motorized/historial-motorized.page').then( m => m.HistorialMotorizedPage)
+  },
+  {
+    path: 'map-motorized',
+    loadComponent: () => import('./Motorized/map-motorized/map-motorized.page').then( m => m.MapMotorizedPage)
+  },
+
 ];
