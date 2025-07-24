@@ -1,9 +1,25 @@
-<ion-header><ion-toolbar><ion-title>Perfil</ion-title></ion-toolbar></ion-header>
+<ion-header>
+  <ion-toolbar color="primary" class="custom-toolbar">
+    <ion-title>Perfil</ion-title>
+  </ion-toolbar>
+</ion-header>
+
 <ion-content class="ion-padding">
+  <div class="background-image"></div>
+
   <form [formGroup]="profileForm" (ngSubmit)="save()">
-    <ion-item><ion-label position="floating">Nombre</ion-label><ion-input formControlName="name"></ion-input></ion-item>
-    <ion-item><ion-label position="floating">Email</ion-label><ion-input formControlName="email"></ion-input></ion-item>
-    <ion-item><ion-label position="floating">Teléfono</ion-label><ion-input formControlName="phone"></ion-input></ion-item>
-    <ion-button expand="block" type="submit">Guardar</ion-button>
+    <ion-item>
+      <ion-label position="floating">Nombre</ion-label>
+      <ion-input formControlName="name"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Email</ion-label>
+      <ion-input formControlName="email"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Teléfono</ion-label>
+      <ion-input formControlName="phone"></ion-input>
+    </ion-item>
+    <ion-button expand="block" type="submit">GUARDAR</ion-button>
   </form>
 </ion-content>
