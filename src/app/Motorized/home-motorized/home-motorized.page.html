@@ -1,10 +1,24 @@
-<ion-header><ion-toolbar><ion-title>Inicio</ion-title></ion-toolbar></ion-header>
+<ion-header>
+  <ion-toolbar class="custom-toolbar">
+    <ion-title>Inicio</ion-title>
+  </ion-toolbar>
+</ion-header>
+
 <ion-content class="ion-padding">
-  <h2>Resumen</h2>
-  <ion-card>
+  <div class="background-image"></div>
+
+  <h2 class="section-title">Resumen</h2>
+
+  <ion-card class="custom-card">
     <ion-card-content>
-      <p>Total de pedidos asignados: {{ stats.total }}</p>
-      <p>Pedidos entregados: {{ stats.delivered }}</p>
+      <div class="stat-item">
+        <span>Total de pedidos asignados:</span>
+        <strong>{{ stats.total }}</strong>
+      </div>
+      <div class="stat-item">
+        <span>Pedidos entregados:</span>
+        <strong>{{ stats.delivered }}</strong>
+      </div>
     </ion-card-content>
   </ion-card>
 </ion-content>

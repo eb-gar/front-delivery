@@ -1,0 +1,57 @@
+ion-content {
+  --background: transparent;
+  position: relative;
+  height: 100%;
+}
+
+.background-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('https://i.imgur.com/RgPI20T.png') no-repeat center center;
+  background-size: cover;
+  z-index: 0;
+  filter: brightness(0.5) blur(4px);
+}
+
+form {
+  position: relative;
+  z-index: 1;
+  padding: 24px;
+  max-width: 500px;
+  margin: 40px auto;
+  background-color: rgba(0, 0, 0, 0.65);
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(6px);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+ion-item {
+  --background: rgba(255, 255, 255, 0.1);
+  --border-radius: 12px;
+  --padding-start: 12px;
+  --inner-padding-end: 12px;
+  color: #fff;
+  border-radius: 12px;
+}
+
+ion-label {
+  color: #fff;
+}
+
+ion-input {
+  --color: #fff;
+  --placeholder-color: #ccc;
+}
+
+ion-button {
+  --background: #ff9800;
+  --background-activated: #e68900;
+  font-weight: bold;
+  border-radius: 10px;
+}
