@@ -10,7 +10,7 @@
 </ion-header>
 
 <ion-content class="orders-content">
-  <!-- Filtros -->
+ 
   <ion-toolbar class="filters-toolbar">
     <ion-segment [(ngModel)]="filtroEstado" (ionChange)="filtrarPedidos()">
       <ion-segment-button value="todos">
@@ -28,7 +28,7 @@
     </ion-segment>
   </ion-toolbar>
 
-  <!-- Lista de pedidos -->
+
   <div *ngIf="pedidosFiltrados.length > 0" class="orders-list">
     <ion-card *ngFor="let pedido of pedidosFiltrados" class="order-card" [class]="'status-' + pedido.estado">
       <ion-card-header>
@@ -84,7 +84,7 @@
     </ion-card>
   </div>
 
-  <!-- Estado vacío -->
+ 
   <div *ngIf="pedidosFiltrados.length === 0" class="empty-state">
     <ion-icon name="receipt-outline" class="empty-icon"></ion-icon>
     <h2>No hay pedidos</h2>

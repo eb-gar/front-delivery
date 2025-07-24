@@ -1,21 +1,43 @@
 .orders-content {
-  --background: #f8f9fa;
+  --background: #fef7ed;
+  background: 
+    linear-gradient(135deg, rgba(254, 247, 237, 0.95) 0%, rgba(255, 251, 235, 0.9) 100%),
+    url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400"><defs><pattern id="food" patternUnits="userSpaceOnUse" width="60" height="60"><rect width="60" height="60" fill="transparent"/><circle cx="15" cy="15" r="4" fill="%23f59e0b" opacity="0.15"/><circle cx="10" cy="20" r="2" fill="%23f59e0b" opacity="0.2"/><circle cx="20" cy="12" r="2" fill="%23f59e0b" opacity="0.2"/><ellipse cx="45" cy="15" rx="6" ry="4" fill="%23ef4444" opacity="0.12"/><circle cx="40" cy="18" r="1.5" fill="%23ef4444" opacity="0.25"/><circle cx="50" cy="12" r="1.5" fill="%23ef4444" opacity="0.25"/><rect x="12" y="35" width="8" height="12" rx="4" fill="%2310b981" opacity="0.15"/><rect x="8" y="40" width="16" height="2" rx="1" fill="%2310b981" opacity="0.2"/><path d="M35 45 Q40 35 45 45 Q40 55 35 45" fill="%23f97316" opacity="0.12"/><circle cx="40" cy="45" r="2" fill="%23f97316" opacity="0.2"/><rect x="5" y="50" width="15" height="8" rx="2" fill="%23a855f7" opacity="0.1"/><circle cx="12" cy="54" r="1" fill="%23a855f7" opacity="0.2"/></pattern></defs><rect width="400" height="400" fill="url(%23food)"/></svg>'),
+    radial-gradient(circle at 25% 25%, rgba(245, 158, 11, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 75% 75%, rgba(239, 68, 68, 0.06) 0%, transparent 50%),
+    radial-gradient(circle at 50% 10%, rgba(16, 185, 129, 0.05) 0%, transparent 40%),
+    linear-gradient(90deg, transparent 0%, rgba(249, 115, 22, 0.03) 50%, transparent 100%);
+  background-size: 100% 100%, 80px 80px, 200px 200px, 180px 180px, 150px 150px, 100% 2px;
+  background-position: center, center, 0% 0%, 100% 100%, 50% 0%, center;
+  animation: foodFlow 30s ease-in-out infinite;
 
   .filters-toolbar {
-    --background: transparent;
-    padding: 8px 16px;
+    --background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(8px);
+    padding: 12px 16px;
+    border-bottom: 1px solid rgba(249, 115, 22, 0.1);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
 
     ion-segment {
-      --background: white;
-      border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      --background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(249, 115, 22, 0.2);
+      
+      ion-segment-button {
+        --color: rgba(255, 255, 255, 0.9);
+        --color-checked: white;
+        --background-checked: rgba(255, 255, 255, 0.25);
+        --border-radius: 8px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+      }
     }
   }
 
   .orders-list {
-    padding: 16px;
+    padding: 20px;
     display: grid;
-    gap: 16px;
+    gap: 20px;
 
     @media (min-width: 768px) {
       grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
@@ -23,26 +45,56 @@
   }
 
   .order-card {
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 16px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
     margin: 0;
     overflow: hidden;
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid rgba(249, 115, 22, 0.1);
 
     &:hover {
-      transform: translateY(-3px);
+      transform: translateY(-5px);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+    }
+
+    ion-card-header {
+      background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+      color: white;
+      
+      ion-card-title {
+        font-weight: 700;
+        font-size: 1.2rem;
+      }
+      
+      ion-card-subtitle {
+        color: rgba(255, 255, 255, 0.9);
+        font-weight: 500;
+      }
     }
 
     &.status-preparando {
-      border-left: 4px solid var(--ion-color-warning);
+      border-left: 5px solid #f59e0b;
+      
+      ion-card-header {
+        background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+      }
     }
 
     &.status-listo {
-      border-left: 4px solid var(--ion-color-success);
+      border-left: 5px solid #10b981;
+      
+      ion-card-header {
+        background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+      }
     }
 
     &.status-entregado {
-      border-left: 4px solid var(--ion-color-primary);
+      border-left: 5px solid #8b5cf6;
+      
+      ion-card-header {
+        background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+      }
     }
   }
 
@@ -52,45 +104,73 @@
     align-items: center;
     margin-bottom: 16px;
     flex-wrap: wrap;
-    gap: 8px;
+    gap: 12px;
 
     > div {
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 8px;
+      background: rgba(249, 115, 22, 0.08);
+      padding: 8px 12px;
+      border-radius: 8px;
     }
 
     ion-icon {
       font-size: 1.2rem;
-      color: var(--ion-color-medium);
+      color: #ea580c;
+    }
+
+    .customer-info span {
+      font-weight: 600;
+      color: #9a3412;
+    }
+
+    .order-total span {
+      font-weight: 700;
+      color: #059669;
+      font-size: 1.1rem;
     }
   }
 
   .order-items {
-    background: rgba(var(--ion-color-light-rgb), 0.5);
-    border-radius: 8px;
+    background: rgba(249, 115, 22, 0.05);
+    border-radius: 12px;
     margin: 0 -16px 16px;
     padding: 8px 0;
+    border: 1px solid rgba(249, 115, 22, 0.1);
 
     ion-item {
       --background: transparent;
-      --padding-start: 8px;
-      --inner-padding-end: 8px;
+      --padding-start: 12px;
+      --inner-padding-end: 12px;
+      border-radius: 8px;
+      margin: 2px 8px;
+
+      &:hover {
+        --background: rgba(255, 255, 255, 0.8);
+      }
 
       ion-thumbnail {
-        --size: 50px;
+        --size: 55px;
         --border-radius: 8px;
         overflow: hidden;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
       }
 
       h3 {
-        font-weight: 500;
-        font-size: 0.9rem;
+        font-weight: 600;
+        font-size: 0.95rem;
+        color: #9a3412;
       }
 
       p {
         font-size: 0.8rem;
-        color: var(--ion-color-medium);
+        color: #a3a3a3;
+        
+        &:last-child {
+          font-weight: 600;
+          color: #059669;
+        }
       }
     }
   }
@@ -100,8 +180,11 @@
       width: 100%;
       --padding-start: 12px;
       --padding-end: 12px;
-      --background: var(--ion-color-light);
+      --background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+      --color: white;
       --border-radius: 8px;
+      font-weight: 600;
+      box-shadow: 0 4px 12px rgba(249, 115, 22, 0.25);
     }
   }
 
@@ -112,22 +195,45 @@
     align-items: center;
     justify-content: center;
     text-align: center;
+    background: rgba(255, 255, 255, 0.9);
+    margin: 20px;
+    border-radius: 16px;
+    border: 1px solid rgba(249, 115, 22, 0.1);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
 
     .empty-icon {
-      font-size: 64px;
-      color: var(--ion-color-medium);
+      font-size: 72px;
+      color: #f97316;
       margin-bottom: 16px;
+      opacity: 0.8;
     }
 
     h2 {
-      color: var(--ion-color-dark);
+      color: #9a3412;
       margin-bottom: 8px;
+      font-weight: 700;
     }
 
     p {
-      color: var(--ion-color-medium);
+      color: #a3a3a3;
       margin: 0;
       max-width: 300px;
+    }
+  }
+
+  // Animación para el fondo de comida
+  @keyframes foodFlow {
+    0%, 100% {
+      background-position: center, center, 0% 0%, 100% 100%, 50% 0%, 0%;
+    }
+    25% {
+      background-position: center, 8px 8px, 3% 3%, 97% 97%, 50% 3%, 25%;
+    }
+    50% {
+      background-position: center, 15px 3px, 6% 1%, 94% 99%, 50% 6%, 50%;
+    }
+    75% {
+      background-position: center, 3px 12px, 1% 5%, 99% 95%, 50% 5%, 75%;
     }
   }
 }
