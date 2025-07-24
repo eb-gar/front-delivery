@@ -1,5 +1,8 @@
 <ion-header>
   <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home" color="light"></ion-back-button>
+    </ion-buttons>
     <ion-title>Carrito</ion-title>
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/home-client"></ion-back-button>
@@ -7,22 +10,32 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding">
-  <ion-item *ngIf="carrito.length === 0">
-    <ion-label>Tu carrito está vacío</ion-label>
-  </ion-item>
+<ion-content class="profile-content">
+  <div class="background">
+    <div class="overlay"></div>
 
-  <ion-item *ngFor="let item of carrito">
-  <ion-thumbnail slot="start">
-    <img [src]="item.imageUrl || 'assets/default.jpg'" />
-  </ion-thumbnail>
-  <ion-label>
-    <h2>{{ item.name }}</h2>
-    <p>${{ item.price | number: '1.2-2' }}</p>
-  </ion-label>
-</ion-item>
+    <div class="form-container">
+      <div class="form-card">
+        <ion-item *ngIf="carrito.length === 0" class="form-item">
+          <ion-label>Tu carrito está vacío</ion-label>
+        </ion-item>
 
-  <h3 class="ion-text-end ion-padding">Total: ${{ total }}</h3>
+        <ion-item *ngFor="let item of carrito" class="form-item">
+          <ion-thumbnail slot="start">
+            <img [src]="item.imageUrl || 'assets/default.jpg'" />
+          </ion-thumbnail>
+          <ion-label>
+            <h2>{{ item.name }}</h2>
+            <p>${{ item.price | number: '1.2-2' }}</p>
+          </ion-label>
+        </ion-item>
 
-  <ion-button expand="block" (click)="hacerPedido()" [disabled]="carrito.length === 0">Hacer Pedido</ion-button>
+        <h3 class="ion-text-end ion-padding" style="color: white">Total: ${{ total }}</h3>
+
+        <ion-button expand="block" (click)="hacerPedido()" [disabled]="carrito.length === 0" class="save-button">
+          Hacer Pedido
+        </ion-button>
+      </div>
+    </div>
+  </div>
 </ion-content>

@@ -40,6 +40,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    height: 100%;
+    min-height: 400px; // 🔧 Fijamos altura mínima para uniformidad
 
     &:hover {
       transform: translateY(-4px);
@@ -54,6 +56,7 @@
 
     .card-text {
       text-align: center;
+      flex: 1; // 🔧 Hace que el contenido ocupe el espacio restante
 
       h2 {
         margin: 8px 0 4px;
@@ -70,6 +73,26 @@
         font-size: 0.9rem;
         margin-top: 8px;
       }
+
+      ion-button {
+        margin-top: auto;
+      }
     }
+  }
+
+  // 🔧 Botón flotante centrado
+  .floating-button-wrapper {
+    display: flex;
+    justify-content: center;
+    margin: 24px 0;
+    position: relative;
+    z-index: 1;
+  }
+
+  .floating-button {
+    border-radius: 0;
+    padding: 12px 24px;
+    font-size: 1rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
   }
 }

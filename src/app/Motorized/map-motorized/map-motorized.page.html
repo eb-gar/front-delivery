@@ -6,22 +6,23 @@
 
 <ion-content class="ion-padding">
   <div class="map-container">
-    <!-- Mapa simulado con cuadrícula -->
     <div class="map-background">
-      <!-- Cuadrícula del mapa -->
+      <!-- Cuadrícula -->
       <div class="map-grid"></div>
 
       <!-- Línea de ruta -->
-      <svg class="route-line">
+      <svg class="route-line" xmlns="http://www.w3.org/2000/svg">
         <polyline
           [attr.points]="getRoutePath()"
           fill="none"
           stroke="var(--ion-color-primary)"
           stroke-width="3"
-        />
+          stroke-linejoin="round"
+          stroke-linecap="round"
+        ></polyline>
       </svg>
 
-      <!-- Marcador de destino -->
+      <!-- Marcador destino -->
       <div
         class="marker destination"
         [style.left.px]="getXPosition(destination)"
@@ -30,7 +31,7 @@
         <ion-icon name="flag" color="danger"></ion-icon>
       </div>
 
-      <!-- Marcador del repartidor -->
+      <!-- Marcador repartidor -->
       <div
         class="marker delivery"
         [style.left.px]="getXPosition(deliveryPosition)"
@@ -40,22 +41,20 @@
       </div>
     </div>
 
-    <!-- Información de coordenadas -->
+    <!-- Coordenadas -->
     <div class="coordinates-info">
       <div>
         <strong>Destino:</strong>
-        {{ destination.lat | number:'1.4-4' }}, {{ destination.lng |
-        number:'1.4-4' }}
+        {{ destination.lat | number:'1.4-4' }}, {{ destination.lng | number:'1.4-4' }}
       </div>
       <div>
         <strong>Repartidor:</strong>
-        {{ deliveryPosition.lat | number:'1.4-4' }}, {{ deliveryPosition.lng |
-        number:'1.4-4' }}
+        {{ deliveryPosition.lat | number:'1.4-4' }}, {{ deliveryPosition.lng | number:'1.4-4' }}
       </div>
     </div>
   </div>
 
-  <!-- Botón de acción -->
+  <!-- Botón acción -->
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button (click)="markAsDelivered()" [disabled]="!isDelivered">
       <ion-icon name="checkmark"></ion-icon>

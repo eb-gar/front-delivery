@@ -1,0 +1,67 @@
+.profile-content {
+  --background: transparent;
+
+  .background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    min-height: 100%;
+    width: 100%;
+    background: url('https://images.unsplash.com/photo-1600891964599-f61ba0e24092?auto=format&fit=crop&w=1350&q=80') no-repeat center center;
+    background-size: cover;
+    z-index: 0;
+  }
+
+  .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    min-height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(5px);
+    z-index: 1;
+  }
+
+  .form-container {
+    position: relative;
+    z-index: 2;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .form-card {
+    width: 100%;
+    max-width: 500px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(8px);
+    padding: 20px;
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  }
+
+  .form-item {
+    margin-bottom: 16px;
+    --background: rgba(255, 255, 255, 0.05);
+    --color: #fff;
+    --placeholder-color: #bbb;
+    --highlight-color-focused: var(--ion-color-primary);
+  }
+
+  .save-button {
+    --background: var(--ion-color-primary);
+    --border-radius: 10px;
+    --color: white;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    height: 48px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    transition: transform 0.2s ease;
+
+    &:active {
+      transform: scale(0.98);
+    }
+  }
+}

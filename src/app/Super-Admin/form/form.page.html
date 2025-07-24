@@ -40,38 +40,40 @@
           </ion-item>
 
           <!-- Campo color primario -->
-          <ion-item class="form-item">
-            <ion-label position="floating" class="input-label">
+          <ion-item class="form-item color-picker-item">
+            <ion-label class="input-label-color">
               Color Primario <ion-text color="danger">*</ion-text>
             </ion-label>
             <ion-input
               type="color"
               [(ngModel)]="restaurante.primaryColor"
-              name="primaryColor">
+              name="primaryColor"
+              class="color-input">
             </ion-input>
           </ion-item>
 
           <!-- Campo color secundario -->
-          <ion-item class="form-item">
-            <ion-label position="floating" class="input-label">
+          <ion-item class="form-item color-picker-item">
+            <ion-label class="input-label-color">
               Color Secundario <ion-text color="danger">*</ion-text>
             </ion-label>
             <ion-input
               type="color"
               [(ngModel)]="restaurante.secondaryColor"
-              name="secondaryColor">
+              name="secondaryColor"
+              class="color-input">
             </ion-input>
           </ion-item>
 
           <!-- Selección de imagen -->
-          <ion-item class="form-item">
-            <ion-label position="floating" class="input-label">
+          <ion-item class="form-item file-upload-item">
+            <ion-label class="input-label">
               Logo del Restaurante <ion-text color="danger">*</ion-text>
             </ion-label>
             <input 
               type="file" 
               (change)="onFileSelected($event)" 
-              class="file-input"
+              class="file-input styled-file-input"
             />
           </ion-item>
 

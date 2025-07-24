@@ -43,23 +43,14 @@
           </ion-card-content>
         </ion-card>
 
-        <ion-card class="action-card" button (click)="navigateTo('/stats')">
-          <ion-icon name="stats-chart-outline" class="action-icon"></ion-icon>
-          <ion-card-header>
-            <ion-card-title>Estadísticas</ion-card-title>
-          </ion-card-header>
-          <ion-card-content>
-            Visualiza tus métricas
-          </ion-card-content>
-        </ion-card>
-
-        <ion-card class="action-card" button (click)="navigateTo('/settings')">
+        <!-- Modificada la tarjeta de Configuración -->
+        <ion-card class="action-card" button (click)="navigateTo('/profile')">
           <ion-icon name="settings-outline" class="action-icon"></ion-icon>
           <ion-card-header>
-            <ion-card-title>Configuración</ion-card-title>
+            <ion-card-title>Perfil</ion-card-title>
           </ion-card-header>
           <ion-card-content>
-            Personaliza tu restaurante
+            Personaliza tu perfil
           </ion-card-content>
         </ion-card>
       </div>

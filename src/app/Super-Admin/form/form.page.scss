@@ -59,6 +59,13 @@
   font-size: 16px;
 }
 
+.input-label-color {
+  color: #aaaaaa !important;
+  font-size: 16px;
+  margin-right: 10px;
+  min-width: 130px;
+}
+
 ion-input {
   --color: #ffffff;
   --placeholder-color: #666666;
@@ -71,10 +78,37 @@ ion-input:focus-within {
   --placeholder-color: #999999;
 }
 
-.file-input {
+/* Estilo para color picker */
+.color-picker-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.color-input {
+  width: 48px;       /* Aumentado */
+  height: 48px;      /* Aumentado */
+  padding: 0;
+  border-radius: 10px;
+  border: none;
+  background-color: transparent;
+}
+
+/* Mejor estilo input file */
+.styled-file-input {
+  background: rgba(30, 30, 30, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 10px;
+  padding: 10px 15px;
   color: #ffffff;
-  padding: 30px 0;
+  cursor: pointer;
+  font-size: 14px;
   width: 100%;
+  transition: background 0.3s ease;
+}
+
+.styled-file-input:hover {
+  background: rgba(50, 50, 50, 0.8);
 }
 
 .image-preview {
