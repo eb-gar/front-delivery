@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-client-orders',
+  selector: 'app-orders-client',
   templateUrl: './orders-client.page.html',
   styleUrls: ['./orders-client.page.scss'],
   standalone: true,
